@@ -1,0 +1,85 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend:
+    name: Backend (FastAPI)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+        with:
+          version: "0.5.11"
+      - name: Set up Python
+        run: uv python install 3.12
+      - name: Install deps
+        run: uv sync
+      - name: Lint (ruff)
+        run: uv run ruff check .
+      - name: Tests
+        run: uv run pytest -q
+
+  contracts:
+    name: Smart contracts (Hardhat)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: contracts
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: contracts/package-lock.json
+      - run: npm ci || npm install
+      - run: npx hardhat compile
+      - run: npx hardhat test
+
+  circuits:
+    name: Circuits (Circom + snarkjs)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: circuits
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+          cache-dependency-path: circuits/package-lock.json
+      - name: Install circom binary
+        run: |
+          mkdir -p "$HOME/.local/bin"
+          curl -fsSL -o "$HOME/.local/bin/circom" https://github.com/iden3/circom/releases/download/v2.1.9/circom-linux-amd64
+          chmod +x "$HOME/.local/bin/circom"
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+      - run: npm ci || npm install
+      - run: ./scripts/build.sh
+
+  extension-lint:
+    name: Extension (syntax check)
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: extension
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Valider manifest.json et fichiers JS
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('manifest.json', 'utf8'))"
+          node --check popup.js
+          node --check background.js

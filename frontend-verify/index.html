@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Vérifier un document — Notaire Numérique</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Vérifier un document</h1>
+        <p class="tagline">
+          Déposez ci-dessous le document reçu. Nous recalculons son empreinte
+          SHA-256 <strong>localement dans votre navigateur</strong> et
+          interrogeons le registre public pour voir s'il a été scellé.
+        </p>
+      </header>
+
+      <section class="config">
+        <label>
+          URL de l'API
+          <input id="api-url" type="url" value="http://localhost:8000" />
+        </label>
+      </section>
+
+      <section id="dropzone" class="dropzone">
+        <p>Glissez-déposez un fichier ici, ou</p>
+        <input id="file-input" type="file" />
+        <p class="note">
+          Le fichier ne quitte jamais votre ordinateur — seul le hash (64
+          caractères hexadécimaux) est envoyé au serveur pour vérification.
+        </p>
+      </section>
+
+      <section id="manual" class="manual">
+        <h2>Ou saisissez directement une empreinte SHA-256</h2>
+        <label>
+          Hash (64 caractères hex)
+          <input id="hash-input" type="text" pattern="^[0-9a-fA-F]{64}$" placeholder="abc123..." />
+        </label>
+        <button id="btn-verify-hash" type="button">Vérifier ce hash</button>
+      </section>
+
+      <section id="result" hidden>
+        <h2 id="result-title"></h2>
+        <p id="result-sub"></p>
+        <dl id="result-details"></dl>
+      </section>
+
+      <footer>
+        <p>
+          Ce service ne stocke ni votre fichier ni son nom. Les vérifications
+          sont anonymes et instantanées.
+        </p>
+      </footer>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

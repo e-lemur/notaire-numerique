@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Notaire Numérique</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Notaire Numérique</h1>
+      <p class="tagline">Sceller un document sans jamais divulguer son contenu.</p>
+    </header>
+
+    <section id="auth-section">
+      <h2>Connexion</h2>
+      <label>
+        URL de l'API
+        <input id="api-url" type="url" value="http://localhost:8000" />
+      </label>
+      <label>
+        Email
+        <input id="email" type="email" placeholder="avocat@cabinet.fr" autocomplete="username" />
+      </label>
+      <label>
+        Mot de passe
+        <input id="password" type="password" autocomplete="current-password" />
+      </label>
+      <button id="btn-login" type="button">Se connecter</button>
+      <p id="auth-status" class="status"></p>
+    </section>
+
+    <section id="seal-section" hidden>
+      <h2>Sceller un document</h2>
+      <p class="help">
+        Le fichier ne quitte jamais votre ordinateur. Seule son empreinte
+        (SHA-256) est envoyée au registre.
+      </p>
+      <label>
+        Fichier à sceller
+        <input id="file-input" type="file" />
+      </label>
+      <label>
+        Type
+        <select id="doc-type">
+          <option value="legal">Juridique</option>
+          <option value="medical">Médical</option>
+          <option value="other" selected>Autre</option>
+        </select>
+      </label>
+      <label>
+        Libellé (optionnel)
+        <input id="label" type="text" maxlength="256" placeholder="Affaire Dupont – Contrat de vente" />
+      </label>
+      <button id="btn-seal" type="button" disabled>Calculer l'empreinte et sceller</button>
+      <button id="btn-logout" type="button" class="link">Se déconnecter</button>
+      <pre id="hash-preview"></pre>
+      <div id="receipt" hidden>
+        <h3>Certificat de scellement</h3>
+        <dl>
+          <dt>ID</dt><dd id="r-id"></dd>
+          <dt>Empreinte</dt><dd id="r-hash"></dd>
+          <dt>Scellé le</dt><dd id="r-time"></dd>
+          <dt>Index de chaîne</dt><dd id="r-index"></dd>
+          <dt>Hash de chaîne</dt><dd id="r-chain"></dd>
+          <dt>Transaction on-chain</dt><dd id="r-tx"></dd>
+        </dl>
+        <a id="pdf-link" href="#" target="_blank">Télécharger le PDF de certificat</a>
+      </div>
+      <p id="seal-status" class="status"></p>
+    </section>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

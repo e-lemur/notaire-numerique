@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Notaire Numérique — Sceller ce document",
+  "version": "0.1.0",
+  "description": "Scelle un document cryptographiquement sur le registre du Notaire Numérique sans jamais divulguer son contenu.",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Sceller ce document"
+  },
+  "permissions": ["storage", "activeTab"],
+  "host_permissions": [
+    "http://localhost:8000/*",
+    "http://127.0.0.1:8000/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
