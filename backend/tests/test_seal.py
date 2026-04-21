@@ -78,6 +78,31 @@ def test_certificate_pdf(client: TestClient, auth_token: str) -> None:
     assert resp.content.startswith(b"%PDF")
 
 
+def test_certificate_contains_qr_and_verify_url(client: TestClient, auth_token: str) -> None:
+    """Le PDF doit contenir le QR code (image XObject) et l'URL de
+    vérification avec le hash scellé — vérifié via pypdf pour éviter
+    les faux négatifs dus à la compression ReportLab."""
+    import io as _io
+
+    from pypdf import PdfReader
+
+    headers = {"Authorization": f"Bearer {auth_token}"}
+    h = _hex(b"qr-me")
+    seal = client.post("/seal", json={"document_hash": h}, headers=headers).json()
+    resp = client.get(f"/certificate/{seal['seal_id']}", headers=headers)
+    assert resp.status_code == 200
+
+    reader = PdfReader(_io.BytesIO(resp.content))
+    page = reader.pages[0]
+    text = page.extract_text() or ""
+    # Le hash figure à la fois dans la table et dans l'URL du QR code
+    assert h in text
+    assert "http" in text  # URL de vérification présente
+    # Au moins une image embarquée (le QR code)
+    images = list(page.images)
+    assert len(images) >= 1
+
+
 def test_certificate_requires_owner(client: TestClient, auth_token: str) -> None:
     headers = {"Authorization": f"Bearer {auth_token}"}
     h = _hex(b"other-owner")

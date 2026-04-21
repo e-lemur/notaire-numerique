@@ -118,17 +118,31 @@ $("file-input").addEventListener("change", (e) => {
   if (file) handleFile(file);
 });
 
-$("btn-verify-hash").addEventListener("click", async () => {
-  const h = $("hash-input").value.trim().toLowerCase();
-  if (!/^[0-9a-f]{64}$/.test(h)) {
+async function verifyHashAndRender(h) {
+  const hh = h.trim().toLowerCase();
+  if (!/^[0-9a-f]{64}$/.test(hh)) {
     renderError("Hash invalide (attendu : 64 caractères hexadécimaux).");
     return;
   }
   try {
     renderPending();
-    const data = await verifyHash(h);
-    renderResult(h, data);
+    const data = await verifyHash(hh);
+    renderResult(hh, data);
   } catch (err) {
     renderError(err.message);
+  }
+}
+
+$("btn-verify-hash").addEventListener("click", () => {
+  verifyHashAndRender($("hash-input").value);
+});
+
+// Auto-vérification si la page est ouverte via un QR code : ?hash=...
+window.addEventListener("DOMContentLoaded", () => {
+  const params = new URLSearchParams(window.location.search);
+  const h = params.get("hash");
+  if (h) {
+    $("hash-input").value = h;
+    verifyHashAndRender(h);
   }
 });

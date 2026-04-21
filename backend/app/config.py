@@ -37,6 +37,14 @@ class Settings(BaseSettings):
         "chrome-extension://*",
     ]
 
+    # URL publique de la page de vérification (utilisée pour le QR code du PDF).
+    # Le placeholder `{hash}` sera remplacé par l'empreinte SHA-256 scellée.
+    verify_base_url: str = "http://localhost:8080/?hash={hash}"
+
+    # URL d'un explorateur blockchain pour linker la transaction on-chain
+    # dans le QR code. Ex: "https://amoy.polygonscan.com/tx/{tx}".
+    onchain_explorer_tx_url: str | None = None
+
 
 settings = Settings()
 settings.data_dir.mkdir(parents=True, exist_ok=True)
