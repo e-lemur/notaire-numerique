@@ -2,56 +2,130 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  background: #f7f9fc;
-  color: #111;
+  background: #f5f7fb;
+  color: #1a1a1a;
   line-height: 1.5;
 }
-main { max-width: 720px; margin: 40px auto; padding: 0 20px; }
-header h1 { margin-bottom: 6px; }
-.tagline { color: #555; margin-top: 0; }
-section { background: white; border: 1px solid #e4e7ec; border-radius: 10px; padding: 20px; margin-bottom: 18px; box-shadow: 0 1px 2px rgba(0,0,0,0.03); }
-label { display: block; font-size: 13px; color: #333; margin-bottom: 8px; }
-input[type="url"], input[type="text"] {
+.topbar {
+  background: white;
+  border-bottom: 1px solid #e4e7ec;
+  padding: 14px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, #1a73e8, #0a49a8);
+  color: white;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700;
+  font-size: 20px;
+}
+.topbar h1 { margin: 0; font-size: 18px; }
+.tagline { margin: 0; color: #667085; font-size: 12px; }
+.session { display: flex; align-items: center; gap: 10px; font-size: 13px; }
+
+.tabs { background: white; border-bottom: 1px solid #e4e7ec; padding: 0 20px; display: flex; gap: 4px; overflow-x: auto; }
+.tab {
+  background: transparent; border: none;
+  padding: 12px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  color: #667085;
+  border-bottom: 2px solid transparent;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.tab:hover { color: #1a73e8; }
+.tab.active { color: #1a73e8; border-bottom-color: #1a73e8; }
+
+main { max-width: 860px; margin: 24px auto; padding: 0 16px; }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+section.tab-panel > h2 { margin-top: 0; }
+section.tab-panel { background: white; border: 1px solid #e4e7ec; border-radius: 12px; padding: 24px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.03); }
+
+details.settings { background: white; border: 1px solid #e4e7ec; border-radius: 10px; padding: 8px 16px; margin-bottom: 12px; }
+details.settings summary { cursor: pointer; font-size: 13px; color: #667085; font-weight: 500; }
+details summary { cursor: pointer; }
+
+label { display: block; font-size: 13px; color: #344054; margin: 10px 0 4px; font-weight: 500; }
+input[type="url"], input[type="text"], input[type="email"], input[type="password"], select, input[type="file"] {
   width: 100%;
   padding: 10px 12px;
   font-size: 14px;
-  border: 1px solid #ccd2da;
-  border-radius: 6px;
-  margin-top: 4px;
+  border: 1px solid #d0d5dd;
+  border-radius: 8px;
   font-family: inherit;
+  background: white;
 }
-input[type="text"] { font-family: "SF Mono", Menlo, Consolas, monospace; }
-button {
+input[type="text"]#hash-input { font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+button:not(.link):not(.tab), .btn-like {
+  display: inline-block;
   padding: 10px 18px;
   font-size: 14px;
   font-weight: 500;
   background: #1a73e8;
-  color: white;
+  color: white !important;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   cursor: pointer;
-  margin-top: 8px;
+  margin-top: 12px;
+  text-decoration: none;
 }
-button:hover { background: #1659b8; }
+button:not(.link):not(.tab):hover, .btn-like:hover { background: #1659b8; }
+button:not(.link):not(.tab):disabled { background: #a5b4cc; cursor: not-allowed; }
+button.link { background: transparent; color: #1a73e8; border: none; cursor: pointer; font-size: 13px; text-decoration: underline; }
 
 .dropzone {
   border: 2px dashed #bfcbe0;
+  background: #fafbfc;
   text-align: center;
   padding: 40px 20px;
+  border-radius: 10px;
   transition: border-color 0.2s, background 0.2s;
+  margin: 12px 0;
 }
 .dropzone.dragover {
   border-color: #1a73e8;
   background: #eaf3ff;
 }
-.dropzone input[type="file"] { margin: 10px auto; display: block; }
-.dropzone .note { color: #666; font-size: 12px; margin-top: 16px; }
+.dropzone input[type="file"] { margin: 10px auto; display: block; max-width: 320px; }
+.dropzone .note { color: #667085; font-size: 12px; margin-top: 16px; }
 
-#result h2 { margin-top: 0; }
-#result.ok h2 { color: #0a7a2a; }
-#result.ko h2 { color: #b00020; }
-#result dl { display: grid; grid-template-columns: 180px 1fr; gap: 6px 12px; margin: 16px 0 0; font-size: 13px; }
-#result dt { font-weight: 600; color: #444; }
-#result dd { margin: 0; word-break: break-all; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.grid2 > div { background: #fafbfc; padding: 16px; border-radius: 10px; border: 1px solid #eef0f4; }
+.grid2 h3 { margin-top: 0; font-size: 15px; }
+@media (max-width: 640px) { .grid2 { grid-template-columns: 1fr; } }
 
-footer { color: #888; font-size: 12px; text-align: center; margin-top: 30px; }
+.result { margin-top: 16px; padding: 16px; border-radius: 10px; }
+.result.ok { background: #ecfdf5; border: 1px solid #a7f3d0; }
+.result.ko { background: #fef2f2; border: 1px solid #fecaca; }
+.result h3 { margin: 0 0 8px; }
+.result.ok h3 { color: #047857; }
+.result.ko h3 { color: #b91c1c; }
+.result dl { display: grid; grid-template-columns: 180px 1fr; gap: 6px 12px; margin: 12px 0 0; font-size: 13px; }
+.result dt { font-weight: 600; color: #344054; }
+.result dd { margin: 0; word-break: break-all; font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 12px; }
+
+.mono, pre.mono { background: #f2f4f7; padding: 10px; font-size: 11px; border-radius: 8px; white-space: pre-wrap; word-break: break-all; margin: 12px 0 0; font-family: "SF Mono", Menlo, Consolas, monospace; }
+
+.status { font-size: 12px; margin: 8px 0 0; min-height: 16px; }
+.status.ok { color: #047857; }
+.status.err { color: #b91c1c; }
+
+#seals-list { margin-top: 16px; }
+.seal-card { background: #fafbfc; border: 1px solid #eef0f4; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; font-size: 13px; }
+.seal-card .row { display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap; }
+.seal-card .meta { color: #667085; font-size: 11px; font-family: "SF Mono", Menlo, Consolas, monospace; word-break: break-all; }
+.seal-card a { color: #1a73e8; text-decoration: underline; font-size: 12px; }
+
+footer { color: #667085; font-size: 12px; text-align: center; padding: 20px; max-width: 720px; margin: 0 auto; }
+
+.help { color: #667085; font-size: 12px; margin: 4px 0 0; }

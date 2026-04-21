@@ -41,6 +41,10 @@ class Settings(BaseSettings):
     # Le placeholder `{hash}` sera remplacé par l'empreinte SHA-256 scellée.
     verify_base_url: str = "http://localhost:8080/?hash={hash}"
 
+    # Regex CORS optionnelle (surcharge la liste `cors_origins`).
+    # Laisser `None` → par défaut on autorise HTTP(S) et chrome-extension.
+    cors_origin_regex: str | None = None
+
     # URL d'un explorateur blockchain pour linker la transaction on-chain
     # dans le QR code. Ex: "https://amoy.polygonscan.com/tx/{tx}".
     onchain_explorer_tx_url: str | None = None

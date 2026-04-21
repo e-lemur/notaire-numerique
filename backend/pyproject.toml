@@ -2,7 +2,6 @@
 name = "notaire-numerique-backend"
 version = "0.1.0"
 description = "API FastAPI pour le Notaire Numérique Inviolable"
-readme = "../README.md"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115.0",
@@ -17,10 +16,10 @@ dependencies = [
     "reportlab>=4.2.0",
     "qrcode[pil]>=7.4.2",
     "python-multipart>=0.0.12",
-    "web3>=7.4.0",
 ]
 
-[dependency-groups]
+[project.optional-dependencies]
+onchain = ["web3>=7.4.0"]
 dev = [
     "pytest>=8.3.0",
     "pytest-asyncio>=0.24.0",
@@ -28,6 +27,7 @@ dev = [
     "ruff>=0.7.0",
     "mypy>=1.13.0",
     "pypdf>=5.1.0",
+    "web3>=7.4.0",
 ]
 
 [build-system]

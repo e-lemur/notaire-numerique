@@ -3,58 +3,171 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Vérifier un document — Notaire Numérique</title>
+    <title>Notaire Numérique Inviolable</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <main>
-      <header>
-        <h1>Vérifier un document</h1>
-        <p class="tagline">
-          Déposez ci-dessous le document reçu. Nous recalculons son empreinte
-          SHA-256 <strong>localement dans votre navigateur</strong> et
-          interrogeons le registre public pour voir s'il a été scellé.
-        </p>
-      </header>
+    <header class="topbar">
+      <div class="brand">
+        <div class="logo">N</div>
+        <div>
+          <h1>Notaire Numérique</h1>
+          <p class="tagline">Sceller et vérifier un document sans jamais divulguer son contenu.</p>
+        </div>
+      </div>
+      <div class="session">
+        <span id="session-email" hidden></span>
+        <button id="btn-logout" type="button" class="link" hidden>Se déconnecter</button>
+      </div>
+    </header>
 
-      <section class="config">
+    <nav class="tabs" role="tablist">
+      <button class="tab active" data-tab="verify" role="tab">Vérifier un document</button>
+      <button class="tab" data-tab="seal" role="tab">Sceller un document</button>
+      <button class="tab" data-tab="list" role="tab" hidden>Mes scellements</button>
+    </nav>
+
+    <main>
+      <!-- ======== Réglages API (collapsible) ======== -->
+      <details id="settings" class="settings">
+        <summary>Paramètres avancés</summary>
         <label>
           URL de l'API
-          <input id="api-url" type="url" value="http://localhost:8000" />
+          <input id="api-url" type="url" />
         </label>
-      </section>
+        <p class="help">Laissez la valeur par défaut, sauf si vous hébergez votre propre API.</p>
+      </details>
 
-      <section id="dropzone" class="dropzone">
-        <p>Glissez-déposez un fichier ici, ou</p>
-        <input id="file-input" type="file" />
-        <p class="note">
-          Le fichier ne quitte jamais votre ordinateur — seul le hash (64
-          caractères hexadécimaux) est envoyé au serveur pour vérification.
-        </p>
-      </section>
-
-      <section id="manual" class="manual">
-        <h2>Ou saisissez directement une empreinte SHA-256</h2>
-        <label>
-          Hash (64 caractères hex)
-          <input id="hash-input" type="text" pattern="^[0-9a-fA-F]{64}$" placeholder="abc123..." />
-        </label>
-        <button id="btn-verify-hash" type="button">Vérifier ce hash</button>
-      </section>
-
-      <section id="result" hidden>
-        <h2 id="result-title"></h2>
-        <p id="result-sub"></p>
-        <dl id="result-details"></dl>
-      </section>
-
-      <footer>
+      <!-- ======== Onglet Vérifier ======== -->
+      <section id="tab-verify" class="tab-panel active">
+        <h2>Vérifier l'authenticité d'un document</h2>
         <p>
-          Ce service ne stocke ni votre fichier ni son nom. Les vérifications
-          sont anonymes et instantanées.
+          Déposez ci-dessous le document reçu. Son empreinte SHA-256 est
+          recalculée <strong>localement dans votre navigateur</strong> puis
+          comparée au registre public. Le fichier ne quitte jamais votre appareil.
         </p>
-      </footer>
+
+        <div id="dropzone" class="dropzone">
+          <p>Glissez-déposez un fichier ici, ou</p>
+          <input id="file-input-verify" type="file" />
+          <p class="note">
+            Le contenu du fichier n'est jamais envoyé — uniquement son hash
+            (64 caractères hex).
+          </p>
+        </div>
+
+        <details>
+          <summary>Ou saisir directement une empreinte SHA-256</summary>
+          <label>
+            Hash (64 caractères hex)
+            <input id="hash-input" type="text" pattern="^[0-9a-fA-F]{64}$" placeholder="abc123..." />
+          </label>
+          <button id="btn-verify-hash" type="button">Vérifier ce hash</button>
+        </details>
+
+        <div id="result" class="result" hidden>
+          <h3 id="result-title"></h3>
+          <p id="result-sub"></p>
+          <dl id="result-details"></dl>
+        </div>
+      </section>
+
+      <!-- ======== Onglet Sceller ======== -->
+      <section id="tab-seal" class="tab-panel">
+        <!-- Zone login -->
+        <div id="auth-box">
+          <h2>Se connecter ou créer un compte</h2>
+          <p>Réservé aux professionnels (avocats, notaires, médecins) et à leurs clients mandatés.</p>
+          <div class="grid2">
+            <div>
+              <h3>J'ai déjà un compte</h3>
+              <label>Email
+                <input id="login-email" type="email" autocomplete="username" />
+              </label>
+              <label>Mot de passe
+                <input id="login-password" type="password" autocomplete="current-password" />
+              </label>
+              <button id="btn-login" type="button">Se connecter</button>
+              <p id="login-status" class="status"></p>
+            </div>
+            <div>
+              <h3>Créer un compte</h3>
+              <label>Email
+                <input id="reg-email" type="email" autocomplete="email" />
+              </label>
+              <label>Mot de passe (≥ 8 caractères)
+                <input id="reg-password" type="password" autocomplete="new-password" minlength="8" />
+              </label>
+              <label>Rôle
+                <select id="reg-role">
+                  <option value="professional" selected>Professionnel (avocat, notaire, médecin)</option>
+                  <option value="client">Client</option>
+                </select>
+              </label>
+              <button id="btn-register" type="button">Créer mon compte</button>
+              <p id="reg-status" class="status"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zone scellement (visible après login) -->
+        <div id="seal-box" hidden>
+          <h2>Sceller un document</h2>
+          <p>
+            L'empreinte SHA-256 du fichier est calculée <strong>localement</strong>
+            dans votre navigateur. Seul ce hash est envoyé au registre. Le fichier
+            reste sur votre appareil.
+          </p>
+          <label>Fichier à sceller
+            <input id="file-input-seal" type="file" />
+          </label>
+          <label>Type de document
+            <select id="seal-type">
+              <option value="legal">Juridique (contrat, testament, …)</option>
+              <option value="medical">Médical (ordonnance, résultat, …)</option>
+              <option value="other" selected>Autre</option>
+            </select>
+          </label>
+          <label>Libellé (optionnel)
+            <input id="seal-label" type="text" maxlength="256" placeholder="Affaire Dupont – Contrat de vente" />
+          </label>
+          <button id="btn-seal" type="button" disabled>Calculer l'empreinte et sceller</button>
+          <pre id="hash-preview" class="mono"></pre>
+          <p id="seal-status" class="status"></p>
+
+          <div id="receipt" class="result ok" hidden>
+            <h3>✓ Certificat de scellement</h3>
+            <dl>
+              <dt>Identifiant</dt><dd id="r-id"></dd>
+              <dt>Empreinte</dt><dd id="r-hash"></dd>
+              <dt>Scellé le</dt><dd id="r-time"></dd>
+              <dt>Index de chaîne</dt><dd id="r-index"></dd>
+              <dt>Hash de chaîne</dt><dd id="r-chain"></dd>
+              <dt>Transaction on-chain</dt><dd id="r-tx"></dd>
+            </dl>
+            <a id="pdf-link" href="#" target="_blank" class="btn-like">Télécharger le PDF de certificat</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======== Onglet Mes scellements ======== -->
+      <section id="tab-list" class="tab-panel">
+        <h2>Mes scellements</h2>
+        <p>Historique des documents que vous avez scellés.</p>
+        <button id="btn-refresh-list" type="button">Rafraîchir</button>
+        <div id="seals-list"></div>
+      </section>
     </main>
+
+    <footer>
+      <p>
+        Notaire Numérique Inviolable — MVP v0. Code source ouvert.
+        Le contenu de vos fichiers n'est <strong>jamais</strong> transmis au serveur,
+        seul le hash SHA-256 l'est.
+      </p>
+    </footer>
+
+    <script src="config.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
