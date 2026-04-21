@@ -2,6 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
+.venv-render-test/
 .env
 .env.local
 *.egg-info/
@@ -35,6 +36,8 @@ contracts/typechain-types/
 backend/data/
 backend/*.db
 backend/storage/
+/tmp/notaire-render-test.log
+/tmp/render-pip.log
 
 # OS
 .DS_Store

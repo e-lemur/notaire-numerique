@@ -18,6 +18,25 @@ cd frontend-verify && python3 -m http.server 8080
 - API : http://localhost:8000 — documentation interactive sur `/docs`
 - Vérification publique : http://localhost:8080
 
+### Déploiement de test sur Render
+
+Le dépôt contient un `render.yaml` à la racine. Sur Render :
+
+1. New + → Blueprint
+2. Sélectionner le repo `e-lemur/notaire-numerique`
+3. Valider le service `notaire-numerique-backend`
+4. Laisser Render générer `JWT_SECRET`
+5. Déployer
+6. Copier l'URL publique Render obtenue (ex: `https://notaire-numerique-backend.onrender.com`)
+7. Dans la web app publique, ouvrir « Paramètres avancés » et remplacer l'URL API temporaire par l'URL Render
+
+Variables prévues :
+- `JWT_SECRET` : généré automatiquement
+- `VERIFY_BASE_URL` : `https://frontend-verify-ukvrvjhh.devinapps.com/?hash={hash}`
+- `CORS_ORIGIN_REGEX` : `(chrome-extension://.*|https?://.*)`
+
+Attention : sur le plan gratuit, le stockage local est éphémère. SQLite + fichiers chiffrés servent donc à la démo / au test MVP, pas à l'archivage pérenne.
+
 ## 2. Inscription (avocat, notaire ou médecin)
 
 ```bash

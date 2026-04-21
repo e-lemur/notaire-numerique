@@ -49,6 +49,19 @@ cd contracts && npm install && npx hardhat node  # dans un autre terminal : npx 
 
 Voir [`docs/USAGE.md`](docs/USAGE.md) pour le parcours utilisateur complet.
 
+## Déploiement Render (MVP de test)
+
+Le repo inclut un blueprint `render.yaml` prêt à l'emploi pour déployer le backend FastAPI sur Render.
+
+- Service : `notaire-numerique-backend`
+- Runtime : Python
+- Root directory : `backend/`
+- Build command : `pip install .`
+- Start command : `uvicorn main:app --host 0.0.0.0 --port $PORT`
+- Health check : `/health`
+
+Limite importante du plan gratuit : le système de fichiers local est **éphémère**. Donc la base SQLite (`backend/data/notaire.db`) et les fichiers chiffrés (`backend/storage/`) peuvent être perdus après redéploiement ou redémarrage. C'est acceptable pour une **démo MVP**, mais pas pour la conservation durable des dossiers. Une fois l'URL Render connue, renseignez-la dans les « Paramètres avancés » de la web app ou redéployez `frontend-verify/` avec la nouvelle URL d'API.
+
 ## Workflow utilisateur
 
 1. **Stockage** : l'avocat dépose le dossier « Affaire X » → chiffrement AES-GCM serveur.
