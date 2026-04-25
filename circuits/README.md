@@ -1,4 +1,4 @@
-# Circuits ZK — Notaire Numérique
+# Circuits ZK — Trust-Seal
 
 ## HashChecker
 

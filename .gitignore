@@ -39,3 +39,6 @@ backend/storage/
 # OS
 .DS_Store
 Thumbs.db
+
+# Render local validation
+backend/.venv-render-test/

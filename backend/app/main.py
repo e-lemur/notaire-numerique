@@ -41,7 +41,7 @@ from .registry import append_seal, verify_chain_integrity
 SessionDep = Annotated[Session, Depends(get_session)]
 
 app = FastAPI(
-    title="Notaire Numérique Inviolable",
+    title="Trust-Seal",
     description=(
         "API de scellement cryptographique de documents à valeur juridique. "
         "Seules des empreintes SHA-256 transitent par le registre — le contenu "
@@ -72,7 +72,7 @@ def _startup() -> None:
 @app.get("/", tags=["meta"])
 def root() -> dict[str, str]:
     return {
-        "service": "Notaire Numérique Inviolable",
+        "service": "Trust-Seal",
         "version": __version__,
         "docs": "/docs",
     }

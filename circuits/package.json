@@ -1,5 +1,5 @@
 {
-  "name": "notaire-numerique-circuits",
+  "name": "trust-seal-circuits",
   "version": "0.1.0",
   "private": true,
   "description": "Circuits ZK (Circom) pour la preuve de pré-image d'un hash Poseidon.",

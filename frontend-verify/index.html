@@ -3,171 +3,334 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Notaire Numérique Inviolable</title>
-    <link rel="stylesheet" href="styles.css" />
+    <title>Trust-Seal — Sceller un document sans jamais en révéler le contenu</title>
+    <meta
+      name="description"
+      content="Trust-Seal scelle vos documents par cryptographie. Le serveur ne voit jamais leur contenu. Conforme au secret professionnel — pour avocats, notaires, médecins."
+    />
+    <meta name="theme-color" content="#0a1f3d" />
+    <link rel="stylesheet" href="landing.css" />
   </head>
   <body>
-    <header class="topbar">
-      <div class="brand">
-        <div class="logo">N</div>
-        <div>
-          <h1>Notaire Numérique</h1>
-          <p class="tagline">Sceller et vérifier un document sans jamais divulguer son contenu.</p>
-        </div>
-      </div>
-      <div class="session">
-        <span id="session-email" hidden></span>
-        <button id="btn-logout" type="button" class="link" hidden>Se déconnecter</button>
+    <header class="nav">
+      <div class="container nav-row">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 2 L28 7 V16 C28 23 22 28 16 30 C10 28 4 23 4 16 V7 Z" fill="#1d4878" stroke="#c9a961" stroke-width="1.5"/>
+              <path d="M11 16 L15 20 L22 12" stroke="#c9a961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </span>
+          <span class="brand-text">Trust-Seal</span>
+        </a>
+        <nav class="nav-links" aria-label="Menu principal">
+          <a href="#fonctionnement">Fonctionnement</a>
+          <a href="#piliers">Pourquoi Trust-Seal</a>
+          <a href="#tarifs">Tarifs</a>
+          <a class="btn btn-ghost" href="/app/">Vérifier un document</a>
+          <a class="btn btn-primary" href="/app/#tab-seal">Démarrer</a>
+        </nav>
       </div>
     </header>
 
-    <nav class="tabs" role="tablist">
-      <button class="tab active" data-tab="verify" role="tab">Vérifier un document</button>
-      <button class="tab" data-tab="seal" role="tab">Sceller un document</button>
-      <button class="tab" data-tab="list" role="tab" hidden>Mes scellements</button>
-    </nav>
-
     <main>
-      <!-- ======== Réglages API (collapsible) ======== -->
-      <details id="settings" class="settings">
-        <summary>Paramètres avancés</summary>
-        <label>
-          URL de l'API
-          <input id="api-url" type="url" />
-        </label>
-        <p class="help">Laissez la valeur par défaut, sauf si vous hébergez votre propre API.</p>
-      </details>
-
-      <!-- ======== Onglet Vérifier ======== -->
-      <section id="tab-verify" class="tab-panel active">
-        <h2>Vérifier l'authenticité d'un document</h2>
-        <p>
-          Déposez ci-dessous le document reçu. Son empreinte SHA-256 est
-          recalculée <strong>localement dans votre navigateur</strong> puis
-          comparée au registre public. Le fichier ne quitte jamais votre appareil.
-        </p>
-
-        <div id="dropzone" class="dropzone">
-          <p>Glissez-déposez un fichier ici, ou</p>
-          <input id="file-input-verify" type="file" />
-          <p class="note">
-            Le contenu du fichier n'est jamais envoyé — uniquement son hash
-            (64 caractères hex).
-          </p>
-        </div>
-
-        <details>
-          <summary>Ou saisir directement une empreinte SHA-256</summary>
-          <label>
-            Hash (64 caractères hex)
-            <input id="hash-input" type="text" pattern="^[0-9a-fA-F]{64}$" placeholder="abc123..." />
-          </label>
-          <button id="btn-verify-hash" type="button">Vérifier ce hash</button>
-        </details>
-
-        <div id="result" class="result" hidden>
-          <h3 id="result-title"></h3>
-          <p id="result-sub"></p>
-          <dl id="result-details"></dl>
+      <section class="hero">
+        <div class="container hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow">Pour avocats, notaires et professions de santé</p>
+            <h1>
+              Sceller un document sans jamais en&nbsp;révéler le contenu.
+            </h1>
+            <p class="lede">
+              Trust-Seal calcule l'empreinte cryptographique de vos documents
+              <strong>directement dans votre navigateur</strong>, l'inscrit dans
+              un registre append-only et vous remet un certificat PDF avec QR
+              code horodaté. Le contenu de vos fichiers n'est jamais transmis
+              à nos serveurs.
+            </p>
+            <div class="hero-cta">
+              <a class="btn btn-primary btn-lg" href="/app/#tab-seal">
+                Sceller mon premier document
+              </a>
+              <a class="btn btn-ghost btn-lg" href="/app/">
+                Vérifier un document reçu
+              </a>
+            </div>
+            <ul class="hero-trust">
+              <li>SHA-256 calculé côté navigateur</li>
+              <li>Hash-chain append-only</li>
+              <li>Compatible avec un ancrage on-chain</li>
+            </ul>
+          </div>
+          <aside class="hero-visual" aria-hidden="true">
+            <div class="seal-card">
+              <div class="seal-card-head">
+                <span class="seal-dot"></span>
+                <span>Certificat de Fiducité Numérique</span>
+              </div>
+              <dl class="seal-card-body">
+                <dt>Empreinte SHA-256</dt>
+                <dd><code>f432bdad…6069f5</code></dd>
+                <dt>Scellé le</dt>
+                <dd>25 avril 2026 — 14:32 UTC</dd>
+                <dt>Index de chaîne</dt>
+                <dd>#1742</dd>
+                <dt>Statut</dt>
+                <dd class="seal-status">✓ Authentique</dd>
+              </dl>
+              <div class="seal-card-qr" aria-hidden="true">
+                <svg viewBox="0 0 21 21" width="84" height="84" xmlns="http://www.w3.org/2000/svg">
+                  <rect width="21" height="21" fill="#fff"/>
+                  <g fill="#0a1f3d">
+                    <rect x="0" y="0" width="7" height="7"/>
+                    <rect x="14" y="0" width="7" height="7"/>
+                    <rect x="0" y="14" width="7" height="7"/>
+                    <rect x="2" y="2" width="3" height="3" fill="#fff"/>
+                    <rect x="16" y="2" width="3" height="3" fill="#fff"/>
+                    <rect x="2" y="16" width="3" height="3" fill="#fff"/>
+                    <rect x="9" y="2" width="1" height="1"/>
+                    <rect x="11" y="3" width="1" height="1"/>
+                    <rect x="9" y="5" width="1" height="1"/>
+                    <rect x="11" y="6" width="1" height="1"/>
+                    <rect x="2" y="9" width="1" height="1"/>
+                    <rect x="4" y="9" width="1" height="1"/>
+                    <rect x="6" y="9" width="1" height="1"/>
+                    <rect x="9" y="9" width="1" height="1"/>
+                    <rect x="11" y="9" width="1" height="1"/>
+                    <rect x="13" y="9" width="1" height="1"/>
+                    <rect x="15" y="9" width="1" height="1"/>
+                    <rect x="17" y="9" width="1" height="1"/>
+                    <rect x="19" y="9" width="1" height="1"/>
+                    <rect x="9" y="11" width="1" height="1"/>
+                    <rect x="11" y="11" width="1" height="1"/>
+                    <rect x="13" y="11" width="1" height="1"/>
+                    <rect x="9" y="13" width="1" height="1"/>
+                    <rect x="11" y="13" width="1" height="1"/>
+                    <rect x="15" y="13" width="1" height="1"/>
+                    <rect x="17" y="13" width="1" height="1"/>
+                    <rect x="9" y="15" width="1" height="1"/>
+                    <rect x="11" y="15" width="1" height="1"/>
+                    <rect x="13" y="15" width="1" height="1"/>
+                    <rect x="15" y="15" width="1" height="1"/>
+                    <rect x="17" y="15" width="1" height="1"/>
+                    <rect x="19" y="15" width="1" height="1"/>
+                    <rect x="9" y="17" width="1" height="1"/>
+                    <rect x="13" y="17" width="1" height="1"/>
+                    <rect x="11" y="19" width="1" height="1"/>
+                    <rect x="13" y="19" width="1" height="1"/>
+                    <rect x="17" y="19" width="1" height="1"/>
+                  </g>
+                </svg>
+                <p>Scannez pour vérifier</p>
+              </div>
+            </div>
+          </aside>
         </div>
       </section>
 
-      <!-- ======== Onglet Sceller ======== -->
-      <section id="tab-seal" class="tab-panel">
-        <!-- Zone login -->
-        <div id="auth-box">
-          <h2>Se connecter ou créer un compte</h2>
-          <p>Réservé aux professionnels (avocats, notaires, médecins) et à leurs clients mandatés.</p>
-          <div class="grid2">
-            <div>
-              <h3>J'ai déjà un compte</h3>
-              <label>Email
-                <input id="login-email" type="email" autocomplete="username" />
-              </label>
-              <label>Mot de passe
-                <input id="login-password" type="password" autocomplete="current-password" />
-              </label>
-              <button id="btn-login" type="button">Se connecter</button>
-              <p id="login-status" class="status"></p>
-            </div>
-            <div>
-              <h3>Créer un compte</h3>
-              <label>Email
-                <input id="reg-email" type="email" autocomplete="email" />
-              </label>
-              <label>Mot de passe (≥ 8 caractères)
-                <input id="reg-password" type="password" autocomplete="new-password" minlength="8" />
-              </label>
-              <label>Rôle
-                <select id="reg-role">
-                  <option value="professional" selected>Professionnel (avocat, notaire, médecin)</option>
-                  <option value="client">Client</option>
-                </select>
-              </label>
-              <button id="btn-register" type="button">Créer mon compte</button>
-              <p id="reg-status" class="status"></p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Zone scellement (visible après login) -->
-        <div id="seal-box" hidden>
-          <h2>Sceller un document</h2>
-          <p>
-            L'empreinte SHA-256 du fichier est calculée <strong>localement</strong>
-            dans votre navigateur. Seul ce hash est envoyé au registre. Le fichier
-            reste sur votre appareil.
-          </p>
-          <label>Fichier à sceller
-            <input id="file-input-seal" type="file" />
-          </label>
-          <label>Type de document
-            <select id="seal-type">
-              <option value="legal">Juridique (contrat, testament, …)</option>
-              <option value="medical">Médical (ordonnance, résultat, …)</option>
-              <option value="other" selected>Autre</option>
-            </select>
-          </label>
-          <label>Libellé (optionnel)
-            <input id="seal-label" type="text" maxlength="256" placeholder="Affaire Dupont – Contrat de vente" />
-          </label>
-          <button id="btn-seal" type="button" disabled>Calculer l'empreinte et sceller</button>
-          <pre id="hash-preview" class="mono"></pre>
-          <p id="seal-status" class="status"></p>
-
-          <div id="receipt" class="result ok" hidden>
-            <h3>✓ Certificat de scellement</h3>
-            <dl>
-              <dt>Identifiant</dt><dd id="r-id"></dd>
-              <dt>Empreinte</dt><dd id="r-hash"></dd>
-              <dt>Scellé le</dt><dd id="r-time"></dd>
-              <dt>Index de chaîne</dt><dd id="r-index"></dd>
-              <dt>Hash de chaîne</dt><dd id="r-chain"></dd>
-              <dt>Transaction on-chain</dt><dd id="r-tx"></dd>
-            </dl>
-            <a id="pdf-link" href="#" target="_blank" class="btn-like">Télécharger le PDF de certificat</a>
+      <section id="piliers" class="piliers">
+        <div class="container">
+          <h2>Trois principes, une garantie&nbsp;: l'intégrité.</h2>
+          <div class="piliers-grid">
+            <article class="pilier">
+              <div class="pilier-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#1d4878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="3" y="11" width="18" height="11" rx="2"/>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                </svg>
+              </div>
+              <h3>Zero-knowledge par défaut</h3>
+              <p>
+                Le contenu de vos fichiers ne quitte jamais votre appareil.
+                Seule l'empreinte SHA-256 (64 caractères) est transmise.
+                <strong>Le secret professionnel est préservé par construction,
+                pas par promesse contractuelle.</strong>
+              </p>
+            </article>
+            <article class="pilier">
+              <div class="pilier-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#1d4878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M9 12l2 2 4-4"/>
+                  <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
+                </svg>
+              </div>
+              <h3>Antériorité incontestable</h3>
+              <p>
+                Chaque scellement est inscrit dans une hash-chain
+                <em>append-only</em>. Une modification d'un seul octet du
+                document original produit une empreinte différente et
+                <strong>invalide automatiquement le certificat</strong>. Aucune
+                réécriture du registre n'est possible.
+              </p>
+            </article>
+            <article class="pilier">
+              <div class="pilier-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="#1d4878" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/>
+                </svg>
+              </div>
+              <h3>Vérification publique, par tous</h3>
+              <p>
+                N'importe quel tiers — juge, banque, confrère, assurance —
+                peut vérifier l'authenticité d'un document depuis son
+                téléphone en scannant le QR code du certificat. Aucun compte,
+                aucune installation requise côté vérificateur.
+              </p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- ======== Onglet Mes scellements ======== -->
-      <section id="tab-list" class="tab-panel">
-        <h2>Mes scellements</h2>
-        <p>Historique des documents que vous avez scellés.</p>
-        <button id="btn-refresh-list" type="button">Rafraîchir</button>
-        <div id="seals-list"></div>
+      <section id="fonctionnement" class="how">
+        <div class="container">
+          <h2>Comment ça marche</h2>
+          <p class="how-lede">
+            Trois clics, dix secondes — et vous avez un certificat opposable.
+          </p>
+          <ol class="how-steps">
+            <li>
+              <span class="how-num">01</span>
+              <h3>Sélectionnez votre fichier</h3>
+              <p>
+                Glissez-déposez n'importe quel document — contrat, testament,
+                ordonnance, résultat d'analyse, PV de réunion. Le format ne
+                change rien.
+              </p>
+            </li>
+            <li>
+              <span class="how-num">02</span>
+              <h3>Le hash est calculé localement</h3>
+              <p>
+                Votre navigateur calcule l'empreinte SHA-256 du fichier puis
+                envoie <strong>uniquement ces 64 caractères</strong> à notre
+                registre. Le contenu reste sur votre machine.
+              </p>
+            </li>
+            <li>
+              <span class="how-num">03</span>
+              <h3>Recevez votre certificat</h3>
+              <p>
+                Téléchargez immédiatement un PDF
+                <em>Certificat de Fiducité Numérique</em>
+                horodaté avec QR&nbsp;code de vérification. Annexable à toute
+                procédure.
+              </p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="tarifs" class="pricing">
+        <div class="container">
+          <h2>Tarifs simples, sans engagement</h2>
+          <p class="pricing-lede">
+            Commencez gratuitement. Évoluez quand vos volumes l'exigent.
+          </p>
+          <div class="pricing-grid">
+            <article class="plan">
+              <header>
+                <h3>Découverte</h3>
+                <p class="plan-price"><span class="plan-amount">0&nbsp;€</span><span class="plan-period">/&nbsp;mois</span></p>
+                <p class="plan-tagline">Pour tester l'outil sur quelques dossiers.</p>
+              </header>
+              <ul class="plan-features">
+                <li>5&nbsp;scellements / mois</li>
+                <li>Vérification publique illimitée</li>
+                <li>Certificat PDF avec QR code</li>
+                <li>Support communautaire</li>
+              </ul>
+              <a class="btn btn-ghost btn-block" href="/app/#tab-seal">Démarrer gratuitement</a>
+            </article>
+            <article class="plan plan-featured">
+              <header>
+                <p class="plan-badge">Le&nbsp;plus&nbsp;populaire</p>
+                <h3>Cabinet</h3>
+                <p class="plan-price"><span class="plan-amount">49&nbsp;€</span><span class="plan-period">/&nbsp;mois</span></p>
+                <p class="plan-tagline">Pour un avocat, notaire ou médecin actif.</p>
+              </header>
+              <ul class="plan-features">
+                <li>Scellements illimités</li>
+                <li>Hash-chain dédiée à votre cabinet</li>
+                <li>Extension Chrome + accès API</li>
+                <li>Export comptable mensuel</li>
+                <li>Support email prioritaire (J+1)</li>
+              </ul>
+              <a class="btn btn-primary btn-block" href="/app/#tab-seal">Choisir Cabinet</a>
+            </article>
+            <article class="plan">
+              <header>
+                <h3>Étude</h3>
+                <p class="plan-price"><span class="plan-amount">149&nbsp;€</span><span class="plan-period">/&nbsp;mois</span></p>
+                <p class="plan-tagline">Pour une étude, une SCM ou un groupe.</p>
+              </header>
+              <ul class="plan-features">
+                <li>Tout du plan Cabinet</li>
+                <li>Jusqu'à 10&nbsp;utilisateurs</li>
+                <li>Ancrage on-chain (Polygon, optionnel)</li>
+                <li>Espace client mandaté</li>
+                <li>SLA 99,9&nbsp;% + support téléphonique</li>
+              </ul>
+              <a class="btn btn-ghost btn-block" href="mailto:contact@trust-seal.xyz?subject=Demande%20plan%20%C3%89tude">Nous contacter</a>
+            </article>
+          </div>
+          <p class="pricing-note">
+            Tarifs indicatifs en phase de lancement. La facturation et les
+            règles d'usage seront détaillées dans les CGU avant tout
+            engagement.
+          </p>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div class="container cta-row">
+          <div>
+            <h2>Prêt à sceller votre premier document&nbsp;?</h2>
+            <p>
+              Aucune carte bancaire requise. Le scellement et la vérification
+              fonctionnent immédiatement depuis votre navigateur.
+            </p>
+          </div>
+          <a class="btn btn-primary btn-lg" href="/app/#tab-seal">
+            Démarrer maintenant
+          </a>
+        </div>
       </section>
     </main>
 
-    <footer>
-      <p>
-        Notaire Numérique Inviolable — MVP v0. Code source ouvert.
-        Le contenu de vos fichiers n'est <strong>jamais</strong> transmis au serveur,
-        seul le hash SHA-256 l'est.
-      </p>
+    <footer class="footer">
+      <div class="container footer-row">
+        <div class="footer-brand">
+          <a class="brand" href="/">
+            <span class="brand-mark" aria-hidden="true">
+              <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 2 L28 7 V16 C28 23 22 28 16 30 C10 28 4 23 4 16 V7 Z" fill="#1d4878" stroke="#c9a961" stroke-width="1.5"/>
+                <path d="M11 16 L15 20 L22 12" stroke="#c9a961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+              </svg>
+            </span>
+            <span class="brand-text">Trust-Seal</span>
+          </a>
+          <p class="footer-baseline">
+            La signature cryptographique pour les pros du droit et de la santé.
+          </p>
+        </div>
+        <nav class="footer-nav" aria-label="Liens secondaires">
+          <a href="/app/">Application</a>
+          <a href="#fonctionnement">Fonctionnement</a>
+          <a href="#tarifs">Tarifs</a>
+          <a href="mailto:contact@trust-seal.xyz">Contact</a>
+        </nav>
+      </div>
+      <div class="container footer-legal">
+        <p>
+          © <span id="footer-year">2026</span> Trust-Seal. Le contenu de vos
+          fichiers n'est <strong>jamais</strong> transmis au serveur — seul le
+          hash SHA-256 l'est. Code source ouvert.
+        </p>
+      </div>
     </footer>
 
-    <script src="config.js"></script>
-    <script src="app.js"></script>
+    <script>
+      document.getElementById("footer-year").textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
-  "name": "Notaire Numérique — Sceller ce document",
+  "name": "Trust-Seal — Sceller ce document",
   "version": "0.1.0",
-  "description": "Scelle un document cryptographiquement sur le registre du Notaire Numérique sans jamais divulguer son contenu.",
+  "description": "Scelle un document cryptographiquement sur le registre Trust-Seal sans jamais divulguer son contenu.",
   "action": {
     "default_popup": "popup.html",
     "default_title": "Sceller ce document"

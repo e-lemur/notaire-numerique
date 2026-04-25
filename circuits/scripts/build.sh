@@ -32,14 +32,14 @@ PTAU="$BUILD/pot12_final.ptau"
 if [ ! -f "$PTAU" ]; then
   "$SNARKJS" powersoftau new bn128 12 "$BUILD/pot12_0000.ptau" -v
   "$SNARKJS" powersoftau contribute "$BUILD/pot12_0000.ptau" "$BUILD/pot12_0001.ptau" \
-    --name="notaire-numerique" -e="$(date +%s%N)" -v
+    --name="trust-seal" -e="$(date +%s%N)" -v
   "$SNARKJS" powersoftau prepare phase2 "$BUILD/pot12_0001.ptau" "$PTAU" -v
 fi
 
 echo "==> 3. Setup Groth16 (phase 2)"
 "$SNARKJS" groth16 setup "$BUILD/HashChecker.r1cs" "$PTAU" "$BUILD/HashChecker_0000.zkey"
 "$SNARKJS" zkey contribute "$BUILD/HashChecker_0000.zkey" "$BUILD/HashChecker_final.zkey" \
-  --name="notaire-numerique-contrib" -e="$(date +%s%N)"
+  --name="trust-seal-contrib" -e="$(date +%s%N)"
 "$SNARKJS" zkey export verificationkey "$BUILD/HashChecker_final.zkey" "$BUILD/verification_key.json"
 
 echo "==> 4. Génération d'une preuve de démonstration"

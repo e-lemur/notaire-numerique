@@ -1,14 +1,25 @@
-// Notaire Numérique — web app publique.
+// Trust-Seal — web app publique.
 // Deux modes : public (vérification anonyme), authentifié (scellement + liste).
 
 const $ = (id) => document.getElementById(id);
-const SESSION_KEY = "notaire_session_v2";
+const SESSION_KEY = "trust_seal_session_v1";
+// Récupère l'éventuelle ancienne session pour migrer en douceur.
+(() => {
+  if (!localStorage.getItem(SESSION_KEY)) {
+    const legacy = localStorage.getItem("notaire_session_v2");
+    if (legacy) {
+      localStorage.setItem(SESSION_KEY, legacy);
+      localStorage.removeItem("notaire_session_v2");
+    }
+  }
+})();
 
 // ---------- Config ----------
 function apiUrl() {
   const stored = $("api-url").value.trim().replace(/\/$/, "");
   if (stored) return stored;
-  return (window.__NOTAIRE_API_URL__ || "http://localhost:8000").replace(/\/$/, "");
+  const configured = window.__TRUST_SEAL_API_URL__ || window.__NOTAIRE_API_URL__;
+  return (configured || "http://localhost:8000").replace(/\/$/, "");
 }
 
 function loadSession() {
