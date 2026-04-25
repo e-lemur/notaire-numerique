@@ -162,7 +162,9 @@ a:hover { color: var(--navy-700); }
 }
 .nav-links a:hover { color: var(--navy-700); background: var(--navy-50); }
 .nav-links .btn { padding: 9px 16px; font-size: 14px; }
-.nav-links .btn:hover { background: var(--navy-700); color: var(--white); }
+.nav-links .btn-primary { color: var(--white); }
+.nav-links .btn-ghost { color: var(--navy-500); }
+.nav-links .btn-primary:hover { background: var(--navy-700); color: var(--white); }
 .nav-links .btn-ghost:hover { background: var(--navy-50); color: var(--navy-700); }
 
 @media (max-width: 760px) {
