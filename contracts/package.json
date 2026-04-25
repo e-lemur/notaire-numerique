@@ -1,8 +1,8 @@
 {
-  "name": "notaire-numerique-contracts",
+  "name": "trust-seal-contracts",
   "version": "0.1.0",
   "private": true,
-  "description": "Contrat Solidity d'ancrage de hashes pour le Notaire Numérique.",
+  "description": "Contrat Solidity d'ancrage de hashes pour Trust-Seal.",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",

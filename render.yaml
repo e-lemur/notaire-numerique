@@ -1,0 +1,44 @@
+services:
+  # ---- Backend FastAPI (Python) ----
+  - type: web
+    name: notaire-numerique-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install .
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    domains:
+      - api.trust-seal.xyz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.3
+      - key: JWT_SECRET
+        generateValue: true
+      - key: VERIFY_BASE_URL
+        value: https://trust-seal.xyz/app/?hash={hash}
+      - key: CORS_ORIGIN_REGEX
+        value: (chrome-extension://.*|https?://.*)
+
+  # ---- Frontend statique (landing + app) ----
+  - type: web
+    name: trust-seal-frontend
+    runtime: static
+    rootDir: frontend-verify
+    buildCommand: ""
+    staticPublishPath: .
+    autoDeploy: true
+    domains:
+      - trust-seal.xyz
+      - www.trust-seal.xyz
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: DENY
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
