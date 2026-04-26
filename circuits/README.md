@@ -1,4 +1,4 @@
-# Circuits ZK — Trust-Seal
+# Circuits ZK — Doc-Seal
 
 ## HashChecker
 

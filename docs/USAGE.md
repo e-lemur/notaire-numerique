@@ -1,7 +1,7 @@
 # Parcours utilisateur complet
 
 Ce guide illustre le cycle de vie d'un document scellé dans
-**Trust-Seal**, de la création au contrôle par un tiers.
+**Doc-Seal**, de la création au contrôle par un tiers.
 
 ---
 

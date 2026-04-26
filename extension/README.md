@@ -1,4 +1,4 @@
-# Extension Chrome — Trust-Seal
+# Extension Chrome — Doc-Seal
 
 Extension Manifest V3 pour sceller un document depuis le navigateur sans
 jamais transmettre son contenu.
@@ -9,7 +9,7 @@ jamais transmettre son contenu.
 2. Activer le mode développeur (coin supérieur droit).
 3. Cliquer « Charger l'extension non empaquetée » et sélectionner ce dossier
    `extension/`.
-4. L'icône Trust-Seal apparaît dans la barre.
+4. L'icône Doc-Seal apparaît dans la barre.
 
 > Les icônes placeholder sont dans `icons/`. Remplacez-les par les vôtres
 > avant publication.

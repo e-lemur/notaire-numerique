@@ -1,14 +1,18 @@
-// Trust-Seal — web app publique.
+// Doc-Seal — web app publique.
 // Deux modes : public (vérification anonyme), authentifié (scellement + liste).
 
 const $ = (id) => document.getElementById(id);
-const SESSION_KEY = "trust_seal_session_v1";
-// Récupère l'éventuelle ancienne session pour migrer en douceur.
+const SESSION_KEY = "doc_seal_session_v1";
+// Migration en douceur : récupère une session laissée par une version précédente
+// (Notaire Numérique → Trust-Seal → Doc-Seal) et l'écrit sous la clef actuelle.
 (() => {
   if (!localStorage.getItem(SESSION_KEY)) {
-    const legacy = localStorage.getItem("notaire_session_v2");
+    const legacy =
+      localStorage.getItem("trust_seal_session_v1") ||
+      localStorage.getItem("notaire_session_v2");
     if (legacy) {
       localStorage.setItem(SESSION_KEY, legacy);
+      localStorage.removeItem("trust_seal_session_v1");
       localStorage.removeItem("notaire_session_v2");
     }
   }
@@ -18,7 +22,7 @@ const SESSION_KEY = "trust_seal_session_v1";
 function apiUrl() {
   const stored = $("api-url").value.trim().replace(/\/$/, "");
   if (stored) return stored;
-  const configured = window.__TRUST_SEAL_API_URL__ || window.__NOTAIRE_API_URL__;
+  const configured = window.__DOC_SEAL_API_URL__ || window.__NOTAIRE_API_URL__;
   return (configured || "http://localhost:8000").replace(/\/$/, "");
 }
 

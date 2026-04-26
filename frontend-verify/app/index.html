@@ -3,8 +3,26 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Trust-Seal — Application</title>
+    <title>Doc-Seal — Application</title>
     <meta name="theme-color" content="#0a1f3d" />
+    <link rel="canonical" href="https://doc-seal.com/app/" />
+    <script>
+      // Redirection douce depuis l'ancien domaine de marque (Trust-Seal → Doc-Seal).
+      (function () {
+        if (/(^|\.)trust-seal\.xyz$/i.test(location.hostname)) {
+          var target =
+            location.protocol +
+            "//" +
+            location.hostname.replace(/(^|\.)trust-seal\.xyz$/i, function (_, p) {
+              return p + "doc-seal.com";
+            }) +
+            location.pathname +
+            location.search +
+            location.hash;
+          location.replace(target);
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -17,7 +35,7 @@
           </svg>
         </span>
         <span class="brand-text">
-          <h1>Trust-Seal</h1>
+          <h1>Doc-Seal</h1>
           <p class="tagline">Sceller et vérifier un document sans jamais en révéler le contenu.</p>
         </span>
       </a>
@@ -167,7 +185,7 @@
 
     <footer>
       <p>
-        <a href="/">Trust-Seal</a> — Le contenu de vos fichiers n'est
+        <a href="/">Doc-Seal</a> — Le contenu de vos fichiers n'est
         <strong>jamais</strong> transmis au serveur, seul le hash SHA-256
         l'est. Code source ouvert.
       </p>
