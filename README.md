@@ -1,4 +1,4 @@
-# Trust-Seal
+# Doc-Seal
 
 **MVP v0** — Plateforme SaaS qui permet aux professions juridiques (avocats,
 notaires) et médicales de **sceller** et d'**authentifier** des documents de
@@ -8,7 +8,7 @@ divulguer le contenu protégé par le secret professionnel.
 > *« Le tampon mathématique »* — transformez n'importe quel fichier numérique
 > en un actif juridique horodaté et infalsifiable.
 
-🌐 Production : <https://trust-seal.xyz> · API : <https://api.trust-seal.xyz>
+🌐 Production : <https://doc-seal.com> · API : <https://api.doc-seal.com>
 
 ---
 

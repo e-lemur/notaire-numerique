@@ -1,8 +1,8 @@
 {
-  "name": "trust-seal-contracts",
+  "name": "doc-seal-contracts",
   "version": "0.1.0",
   "private": true,
-  "description": "Contrat Solidity d'ancrage de hashes pour Trust-Seal.",
+  "description": "Contrat Solidity d'ancrage de hashes pour Doc-Seal.",
   "scripts": {
     "compile": "hardhat compile",
     "test": "hardhat test",

@@ -77,7 +77,7 @@ def render_certificate(seal: Seal, owner_email: str) -> bytes:
     c.setFont("Helvetica-Bold", 20)
     c.drawString(20 * mm, height - 30 * mm, "Certificat de Fiducité Numérique")
     c.setFont("Helvetica", 10)
-    c.drawString(20 * mm, height - 38 * mm, "Trust-Seal — trust-seal.xyz")
+    c.drawString(20 * mm, height - 38 * mm, "Doc-Seal — doc-seal.com")
 
     c.line(20 * mm, height - 55 * mm, width - 20 * mm, height - 55 * mm)
 
@@ -133,7 +133,7 @@ def render_certificate(seal: Seal, owner_email: str) -> bytes:
     c.setFont("Helvetica-Oblique", 8)
     mentions = [
         "Ce certificat atteste cryptographiquement qu'un document dont l'empreinte SHA-256 figure",
-        "ci-dessus a été enregistré dans le registre append-only Trust-Seal à la date",
+        "ci-dessus a été enregistré dans le registre append-only Doc-Seal à la date",
         "indiquée. Toute modification d'un seul octet du document original produit une empreinte",
         "différente et rend ce certificat invalide. Le contenu du document n'a jamais été transmis",
         "au serveur, ce qui préserve le secret professionnel (avocat, notaire, médical).",

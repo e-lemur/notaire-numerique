@@ -10,6 +10,8 @@ services:
     healthCheckPath: /health
     autoDeploy: true
     domains:
+      - api.doc-seal.com
+      # Domaine historique conservé pendant la transition de marque (Trust-Seal → Doc-Seal)
       - api.trust-seal.xyz
     envVars:
       - key: PYTHON_VERSION
@@ -17,7 +19,7 @@ services:
       - key: JWT_SECRET
         generateValue: true
       - key: VERIFY_BASE_URL
-        value: https://trust-seal.xyz/app/?hash={hash}
+        value: https://doc-seal.com/app/?hash={hash}
       - key: CORS_ORIGIN_REGEX
         value: (chrome-extension://.*|https?://.*)
 
@@ -30,6 +32,10 @@ services:
     staticPublishPath: .
     autoDeploy: true
     domains:
+      - doc-seal.com
+      - www.doc-seal.com
+      # Domaines historiques conservés pendant la transition de marque
+      # (les utilisateurs qui visitent trust-seal.xyz sont redirigés côté client vers doc-seal.com)
       - trust-seal.xyz
       - www.trust-seal.xyz
     headers:

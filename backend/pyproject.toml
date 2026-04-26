@@ -1,7 +1,7 @@
 [project]
-name = "trust-seal-backend"
+name = "doc-seal-backend"
 version = "0.1.0"
-description = "API FastAPI pour Trust-Seal — scellement cryptographique de documents à valeur juridique"
+description = "API FastAPI pour Doc-Seal — scellement cryptographique de documents à valeur juridique"
 requires-python = ">=3.11"
 dependencies = [
     "fastapi>=0.115.0",

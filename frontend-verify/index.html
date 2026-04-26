@@ -3,12 +3,30 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Trust-Seal — Sceller un document sans jamais en révéler le contenu</title>
+    <title>Doc-Seal — Sceller un document sans jamais en révéler le contenu</title>
     <meta
       name="description"
-      content="Trust-Seal scelle vos documents par cryptographie. Le serveur ne voit jamais leur contenu. Conforme au secret professionnel — pour avocats, notaires, médecins."
+      content="Doc-Seal scelle vos documents par cryptographie. Le serveur ne voit jamais leur contenu. Conforme au secret professionnel — pour avocats, notaires, médecins."
     />
     <meta name="theme-color" content="#0a1f3d" />
+    <link rel="canonical" href="https://doc-seal.com/" />
+    <script>
+      // Redirection douce depuis l'ancien domaine de marque (Trust-Seal → Doc-Seal).
+      (function () {
+        if (/(^|\.)trust-seal\.xyz$/i.test(location.hostname)) {
+          var target =
+            location.protocol +
+            "//" +
+            location.hostname.replace(/(^|\.)trust-seal\.xyz$/i, function (_, p) {
+              return p + "doc-seal.com";
+            }) +
+            location.pathname +
+            location.search +
+            location.hash;
+          location.replace(target);
+        }
+      })();
+    </script>
     <link rel="stylesheet" href="landing.css" />
   </head>
   <body>
@@ -21,11 +39,11 @@
               <path d="M11 16 L15 20 L22 12" stroke="#c9a961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
             </svg>
           </span>
-          <span class="brand-text">Trust-Seal</span>
+          <span class="brand-text">Doc-Seal</span>
         </a>
         <nav class="nav-links" aria-label="Menu principal">
           <a href="#fonctionnement">Fonctionnement</a>
-          <a href="#piliers">Pourquoi Trust-Seal</a>
+          <a href="#piliers">Pourquoi Doc-Seal</a>
           <a href="#tarifs">Tarifs</a>
           <a class="btn btn-ghost" href="/app/">Vérifier un document</a>
           <a class="btn btn-primary" href="/app/#tab-seal">Démarrer</a>
@@ -42,7 +60,7 @@
               Sceller un document sans jamais en&nbsp;révéler le contenu.
             </h1>
             <p class="lede">
-              Trust-Seal calcule l'empreinte cryptographique de vos documents
+              Doc-Seal calcule l'empreinte cryptographique de vos documents
               <strong>directement dans votre navigateur</strong>, l'inscrit dans
               un registre append-only et vous remet un certificat PDF avec QR
               code horodaté. Le contenu de vos fichiers n'est jamais transmis
@@ -270,7 +288,7 @@
                 <li>Espace client mandaté</li>
                 <li>SLA 99,9&nbsp;% + support téléphonique</li>
               </ul>
-              <a class="btn btn-ghost btn-block" href="mailto:contact@trust-seal.xyz?subject=Demande%20plan%20%C3%89tude">Nous contacter</a>
+              <a class="btn btn-ghost btn-block" href="mailto:contact@doc-seal.com?subject=Demande%20plan%20%C3%89tude">Nous contacter</a>
             </article>
           </div>
           <p class="pricing-note">
@@ -307,7 +325,7 @@
                 <path d="M11 16 L15 20 L22 12" stroke="#c9a961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
               </svg>
             </span>
-            <span class="brand-text">Trust-Seal</span>
+            <span class="brand-text">Doc-Seal</span>
           </a>
           <p class="footer-baseline">
             La signature cryptographique pour les pros du droit et de la santé.
@@ -317,12 +335,12 @@
           <a href="/app/">Application</a>
           <a href="#fonctionnement">Fonctionnement</a>
           <a href="#tarifs">Tarifs</a>
-          <a href="mailto:contact@trust-seal.xyz">Contact</a>
+          <a href="mailto:contact@doc-seal.com">Contact</a>
         </nav>
       </div>
       <div class="container footer-legal">
         <p>
-          © <span id="footer-year">2026</span> Trust-Seal. Le contenu de vos
+          © <span id="footer-year">2026</span> Doc-Seal. Le contenu de vos
           fichiers n'est <strong>jamais</strong> transmis au serveur — seul le
           hash SHA-256 l'est. Code source ouvert.
         </p>
