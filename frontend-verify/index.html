@@ -3,10 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Doc-Seal — Sceller un document sans jamais en révéler le contenu</title>
+    <title data-i18n="html.title">Doc-Seal — Conformité notariale et juridique par cryptographie</title>
     <meta
       name="description"
-      content="Doc-Seal scelle vos documents par cryptographie. Le serveur ne voit jamais leur contenu. Conforme au secret professionnel — pour avocats, notaires, médecins."
+      content="Doc-Seal est l'outil compliance natif des notaires et avocats français. Sealing cryptographique, RGPD, LCB-FT, RBE — automatisés. Privacy by design : nous ne voyons jamais vos documents."
     />
     <meta name="theme-color" content="#0a1f3d" />
     <link rel="canonical" href="https://doc-seal.com/" />
@@ -41,12 +41,38 @@
           </span>
           <span class="brand-text">Doc-Seal</span>
         </a>
-        <nav class="nav-links" aria-label="Menu principal">
-          <a href="#fonctionnement">Fonctionnement</a>
-          <a href="#piliers">Pourquoi Doc-Seal</a>
-          <a href="#tarifs">Tarifs</a>
-          <a class="btn btn-ghost" href="/app/">Vérifier un document</a>
-          <a class="btn btn-primary" href="/app/#tab-seal">Démarrer</a>
+        <nav class="nav-links" aria-label="Menu">
+          <a href="#fonctionnement" data-i18n="nav.fonctionnement">Fonctionnement</a>
+          <a href="#piliers" data-i18n="nav.piliers">Pourquoi Doc-Seal</a>
+          <a href="#bientot" data-i18n="nav.bientot">Roadmap</a>
+          <a href="#tarifs" data-i18n="nav.tarifs">Tarifs</a>
+          <a class="btn btn-ghost" href="/app/" data-i18n="nav.verifier">Vérifier un document</a>
+          <a class="btn btn-primary" href="/app/#tab-seal" data-i18n="nav.demarrer">Démarrer</a>
+          <div
+            class="lang-switch"
+            role="group"
+            data-i18n-attr="aria-label:lang.toggle.aria"
+            aria-label="Changer la langue"
+          >
+            <button
+              type="button"
+              class="lang-btn is-active"
+              data-lang="fr"
+              data-i18n="lang.fr"
+              aria-pressed="true"
+            >
+              FR
+            </button>
+            <button
+              type="button"
+              class="lang-btn"
+              data-lang="en"
+              data-i18n="lang.en"
+              aria-pressed="false"
+            >
+              EN
+            </button>
+          </div>
         </nav>
       </div>
     </header>
@@ -55,46 +81,48 @@
       <section class="hero">
         <div class="container hero-grid">
           <div class="hero-copy">
-            <p class="eyebrow">Pour avocats, notaires et professions de santé</p>
-            <h1>
-              Sceller un document sans jamais en&nbsp;révéler le contenu.
+            <p class="eyebrow" data-i18n="hero.eyebrow">
+              Pour notaires, avocats et cabinets juridiques internationaux
+            </p>
+            <h1 data-i18n-html="hero.h1.html">
+              L'outil compliance natif des notaires<br />et avocats français.
             </h1>
-            <p class="lede">
-              Doc-Seal calcule l'empreinte cryptographique de vos documents
-              <strong>directement dans votre navigateur</strong>, l'inscrit dans
-              un registre append-only et vous remet un certificat PDF avec QR
-              code horodaté. Le contenu de vos fichiers n'est jamais transmis
-              à nos serveurs.
+            <p class="lede" data-i18n-html="hero.lede.html">
+              Sealing cryptographique, RGPD, LCB-FT et bénéficiaires effectifs —
+              réunis dans un seul tableau de bord.
+              <strong>Privacy by design</strong> : l'empreinte SHA-256 est
+              calculée dans votre navigateur, le contenu de vos documents ne
+              quitte jamais votre poste.
             </p>
             <div class="hero-cta">
-              <a class="btn btn-primary btn-lg" href="/app/#tab-seal">
+              <a class="btn btn-primary btn-lg" href="/app/#tab-seal" data-i18n="hero.cta.primary">
                 Sceller mon premier document
               </a>
-              <a class="btn btn-ghost btn-lg" href="/app/">
+              <a class="btn btn-ghost btn-lg" href="/app/" data-i18n="hero.cta.secondary">
                 Vérifier un document reçu
               </a>
             </div>
             <ul class="hero-trust">
-              <li>SHA-256 calculé côté navigateur</li>
-              <li>Hash-chain append-only</li>
-              <li>Compatible avec un ancrage on-chain</li>
+              <li data-i18n="hero.trust.1">SHA-256 calculé côté navigateur</li>
+              <li data-i18n="hero.trust.2">Hash-chain append-only</li>
+              <li data-i18n="hero.trust.3">Compatible avec un ancrage on-chain</li>
             </ul>
           </div>
           <aside class="hero-visual" aria-hidden="true">
             <div class="seal-card">
               <div class="seal-card-head">
                 <span class="seal-dot"></span>
-                <span>Certificat de Fiducité Numérique</span>
+                <span data-i18n="hero.card.title">Certificat de Fiducité Numérique</span>
               </div>
               <dl class="seal-card-body">
-                <dt>Empreinte SHA-256</dt>
+                <dt data-i18n="hero.card.fingerprint">Empreinte SHA-256</dt>
                 <dd><code>f432bdad…6069f5</code></dd>
-                <dt>Scellé le</dt>
-                <dd>25 avril 2026 — 14:32 UTC</dd>
-                <dt>Index de chaîne</dt>
+                <dt data-i18n="hero.card.sealed">Scellé le</dt>
+                <dd data-i18n="hero.card.sealed.value">25 avril 2026 — 14:32 UTC</dd>
+                <dt data-i18n="hero.card.chain">Index de chaîne</dt>
                 <dd>#1742</dd>
-                <dt>Statut</dt>
-                <dd class="seal-status">✓ Authentique</dd>
+                <dt data-i18n="hero.card.status">Statut</dt>
+                <dd class="seal-status" data-i18n="hero.card.status.value">✓ Authentique</dd>
               </dl>
               <div class="seal-card-qr" aria-hidden="true">
                 <svg viewBox="0 0 21 21" width="84" height="84" xmlns="http://www.w3.org/2000/svg">
@@ -139,7 +167,7 @@
                     <rect x="17" y="19" width="1" height="1"/>
                   </g>
                 </svg>
-                <p>Scannez pour vérifier</p>
+                <p data-i18n="hero.card.scan">Scannez pour vérifier</p>
               </div>
             </div>
           </aside>
@@ -148,7 +176,7 @@
 
       <section id="piliers" class="piliers">
         <div class="container">
-          <h2>Trois principes, une garantie&nbsp;: l'intégrité.</h2>
+          <h2 data-i18n-html="piliers.h2.html">Trois principes, une garantie&nbsp;: l'intégrité.</h2>
           <div class="piliers-grid">
             <article class="pilier">
               <div class="pilier-icon" aria-hidden="true">
@@ -157,10 +185,10 @@
                   <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
                 </svg>
               </div>
-              <h3>Zero-knowledge par défaut</h3>
-              <p>
+              <h3 data-i18n="piliers.1.title">Zero-knowledge par défaut</h3>
+              <p data-i18n-html="piliers.1.body.html">
                 Le contenu de vos fichiers ne quitte jamais votre appareil.
-                Seule l'empreinte SHA-256 (64 caractères) est transmise.
+                Seule l'empreinte SHA-256 (64&nbsp;caractères) est transmise.
                 <strong>Le secret professionnel est préservé par construction,
                 pas par promesse contractuelle.</strong>
               </p>
@@ -172,8 +200,8 @@
                   <path d="M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0z"/>
                 </svg>
               </div>
-              <h3>Antériorité incontestable</h3>
-              <p>
+              <h3 data-i18n="piliers.2.title">Antériorité incontestable</h3>
+              <p data-i18n-html="piliers.2.body.html">
                 Chaque scellement est inscrit dans une hash-chain
                 <em>append-only</em>. Une modification d'un seul octet du
                 document original produit une empreinte différente et
@@ -187,8 +215,8 @@
                   <path d="M12 2 4 6v6c0 5 3.5 9 8 10 4.5-1 8-5 8-10V6l-8-4z"/>
                 </svg>
               </div>
-              <h3>Vérification publique, par tous</h3>
-              <p>
+              <h3 data-i18n="piliers.3.title">Vérification publique, par tous</h3>
+              <p data-i18n="piliers.3.body">
                 N'importe quel tiers — juge, banque, confrère, assurance —
                 peut vérifier l'authenticité d'un document depuis son
                 téléphone en scannant le QR code du certificat. Aucun compte,
@@ -201,33 +229,33 @@
 
       <section id="fonctionnement" class="how">
         <div class="container">
-          <h2>Comment ça marche</h2>
-          <p class="how-lede">
+          <h2 data-i18n="how.h2">Comment ça marche</h2>
+          <p class="how-lede" data-i18n="how.lede">
             Trois clics, dix secondes — et vous avez un certificat opposable.
           </p>
           <ol class="how-steps">
             <li>
               <span class="how-num">01</span>
-              <h3>Sélectionnez votre fichier</h3>
-              <p>
-                Glissez-déposez n'importe quel document — contrat, testament,
-                ordonnance, résultat d'analyse, PV de réunion. Le format ne
+              <h3 data-i18n="how.1.title">Sélectionnez votre fichier</h3>
+              <p data-i18n="how.1.body">
+                Glissez-déposez n'importe quel document — acte authentique,
+                contrat, testament, conclusion, ordonnance, PV. Le format ne
                 change rien.
               </p>
             </li>
             <li>
               <span class="how-num">02</span>
-              <h3>Le hash est calculé localement</h3>
-              <p>
+              <h3 data-i18n="how.2.title">Le hash est calculé localement</h3>
+              <p data-i18n-html="how.2.body.html">
                 Votre navigateur calcule l'empreinte SHA-256 du fichier puis
-                envoie <strong>uniquement ces 64 caractères</strong> à notre
+                envoie <strong>uniquement ces 64&nbsp;caractères</strong> à notre
                 registre. Le contenu reste sur votre machine.
               </p>
             </li>
             <li>
               <span class="how-num">03</span>
-              <h3>Recevez votre certificat</h3>
-              <p>
+              <h3 data-i18n="how.3.title">Recevez votre certificat</h3>
+              <p data-i18n-html="how.3.body.html">
                 Téléchargez immédiatement un PDF
                 <em>Certificat de Fiducité Numérique</em>
                 horodaté avec QR&nbsp;code de vérification. Annexable à toute
@@ -238,60 +266,269 @@
         </div>
       </section>
 
+      <section id="bientot" class="roadmap">
+        <div class="container">
+          <h2 data-i18n="bientot.h2">Roadmap compliance — votez pour vos services prioritaires</h2>
+          <p class="roadmap-lede" data-i18n="bientot.lede">
+            Nous construisons Doc-Seal avec les notaires et avocats. Indiquez
+            les modules qui débloqueraient votre quotidien — vous recevrez une
+            invitation prioritaire à la version bêta.
+          </p>
+          <div class="roadmap-grid">
+            <article class="service" data-service="rgpd-vault">
+              <div class="service-head">
+                <span class="service-tag">Q3 2026</span>
+                <h3 data-i18n="bientot.s1.title">RGPD vault</h3>
+              </div>
+              <p data-i18n-html="bientot.s1.body">
+                Coffre-fort chiffré 5&nbsp;ans avec auto-purge à l'échéance.
+                Conforme à l'obligation de conservation et à la limite RGPD.
+              </p>
+              <button
+                type="button"
+                class="service-vote btn btn-ghost btn-sm"
+                data-i18n="bientot.vote"
+                data-i18n-text-voted="bientot.voted"
+              >
+                Me prévenir
+              </button>
+            </article>
+            <article class="service" data-service="bodacc">
+              <div class="service-head">
+                <span class="service-tag">Q3 2026</span>
+                <h3 data-i18n="bientot.s2.title">BODACC veille</h3>
+              </div>
+              <p data-i18n-html="bientot.s2.body">
+                Alerte automatique sur les sociétés de vos dossiers.
+                Redressements, liquidations, ventes de fonds — détectés avant
+                la signature.
+              </p>
+              <button
+                type="button"
+                class="service-vote btn btn-ghost btn-sm"
+                data-i18n="bientot.vote"
+                data-i18n-text-voted="bientot.voted"
+              >
+                Me prévenir
+              </button>
+            </article>
+            <article class="service" data-service="rbe-inpi">
+              <div class="service-head">
+                <span class="service-tag">Q4 2026</span>
+                <h3 data-i18n="bientot.s3.title">RBE Express INPI</h3>
+              </div>
+              <p data-i18n-html="bientot.s3.body">
+                Bénéficiaires effectifs en 30&nbsp;secondes. Chaîne de
+                holdings reconstruite, PDF officiel formaté.
+              </p>
+              <button
+                type="button"
+                class="service-vote btn btn-ghost btn-sm"
+                data-i18n="bientot.vote"
+                data-i18n-text-voted="bientot.voted"
+              >
+                Me prévenir
+              </button>
+            </article>
+            <article class="service" data-service="lcbft">
+              <div class="service-head">
+                <span class="service-tag">Q4 2026</span>
+                <h3 data-i18n="bientot.s4.title">LCB-FT scan</h3>
+              </div>
+              <p data-i18n-html="bientot.s4.body">
+                Détection PEP automatisée avec sources ouvertes (Wikipedia
+                structuré, sanctions UE/ONU). Niveau de risque par dossier.
+              </p>
+              <button
+                type="button"
+                class="service-vote btn btn-ghost btn-sm"
+                data-i18n="bientot.vote"
+                data-i18n-text-voted="bientot.voted"
+              >
+                Me prévenir
+              </button>
+            </article>
+            <article class="service" data-service="oac">
+              <div class="service-head">
+                <span class="service-tag">Q1 2027</span>
+                <h3 data-i18n="bientot.s5.title">OAC dashboard</h3>
+              </div>
+              <p data-i18n-html="bientot.s5.body">
+                Pilotage des obligations actives continues : KYC à renouveler,
+                RBE à reconsulter, archives à purger.
+              </p>
+              <button
+                type="button"
+                class="service-vote btn btn-ghost btn-sm"
+                data-i18n="bientot.vote"
+                data-i18n-text-voted="bientot.voted"
+              >
+                Me prévenir
+              </button>
+            </article>
+            <article class="service" data-service="qualiopi">
+              <div class="service-head">
+                <span class="service-tag">Q2 2027</span>
+                <h3 data-i18n="bientot.s6.title">Formation Qualiopi</h3>
+              </div>
+              <p data-i18n-html="bientot.s6.body">
+                Modules certifiants LCB-FT, RGPD, cybersécurité. Éligibles
+                OPCO — coût réel pour le cabinet&nbsp;: zéro.
+              </p>
+              <button
+                type="button"
+                class="service-vote btn btn-ghost btn-sm"
+                data-i18n="bientot.vote"
+                data-i18n-text-voted="bientot.voted"
+              >
+                Me prévenir
+              </button>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="tarifs" class="pricing">
         <div class="container">
-          <h2>Tarifs simples, sans engagement</h2>
-          <p class="pricing-lede">
+          <h2 data-i18n="pricing.h2">Tarifs simples, sans engagement</h2>
+          <p class="pricing-lede" data-i18n="pricing.lede">
             Commencez gratuitement. Évoluez quand vos volumes l'exigent.
           </p>
-          <div class="pricing-grid">
+          <div class="pricing-grid pricing-grid-5">
             <article class="plan">
               <header>
-                <h3>Découverte</h3>
-                <p class="plan-price"><span class="plan-amount">0&nbsp;€</span><span class="plan-period">/&nbsp;mois</span></p>
-                <p class="plan-tagline">Pour tester l'outil sur quelques dossiers.</p>
+                <h3 data-i18n="plan.discovery.title">Découverte</h3>
+                <p class="plan-price">
+                  <span class="plan-amount" data-i18n="pricing.amount.0">0</span>
+                  <span class="plan-currency" aria-hidden="true">€</span>
+                  <span class="plan-period" data-i18n="pricing.period">/ mois</span>
+                </p>
+                <p class="plan-tagline" data-i18n="plan.discovery.tagline">
+                  Pour tester Doc-Seal sur quelques dossiers.
+                </p>
               </header>
               <ul class="plan-features">
-                <li>5&nbsp;scellements / mois</li>
-                <li>Vérification publique illimitée</li>
-                <li>Certificat PDF avec QR code</li>
-                <li>Support communautaire</li>
+                <li data-i18n="plan.discovery.f1">10 scellements / mois</li>
+                <li data-i18n="plan.discovery.f2">Vérification publique illimitée</li>
+                <li data-i18n="plan.discovery.f3">Certificat PDF avec QR code</li>
+                <li data-i18n="plan.discovery.f4">Support communautaire</li>
               </ul>
-              <a class="btn btn-ghost btn-block" href="/app/#tab-seal">Démarrer gratuitement</a>
+              <a class="btn btn-ghost btn-block" href="/app/#tab-seal" data-i18n="plan.discovery.cta">
+                Démarrer gratuitement
+              </a>
             </article>
             <article class="plan plan-featured">
               <header>
-                <p class="plan-badge">Le&nbsp;plus&nbsp;populaire</p>
-                <h3>Cabinet</h3>
-                <p class="plan-price"><span class="plan-amount">49&nbsp;€</span><span class="plan-period">/&nbsp;mois</span></p>
-                <p class="plan-tagline">Pour un avocat, notaire ou médecin actif.</p>
+                <p class="plan-badge" data-i18n="plan.cabinet.badge">Le plus populaire</p>
+                <h3 data-i18n="plan.cabinet.title">Cabinet</h3>
+                <p class="plan-price">
+                  <span class="plan-amount" data-i18n="pricing.amount.49">49</span>
+                  <span class="plan-currency" aria-hidden="true">€</span>
+                  <span class="plan-period" data-i18n="pricing.period">/ mois</span>
+                </p>
+                <p class="plan-tagline" data-i18n="plan.cabinet.tagline">
+                  Pour un notaire ou avocat solo.
+                </p>
               </header>
               <ul class="plan-features">
-                <li>Scellements illimités</li>
-                <li>Hash-chain dédiée à votre cabinet</li>
-                <li>Extension Chrome + accès API</li>
-                <li>Export comptable mensuel</li>
-                <li>Support email prioritaire (J+1)</li>
+                <li data-i18n="plan.cabinet.f1">100 scellements / mois</li>
+                <li data-i18n="plan.cabinet.f2">Hash-chain dédiée à votre cabinet</li>
+                <li data-i18n="plan.cabinet.f3">Extension Chrome + accès API</li>
+                <li data-i18n="plan.cabinet.f4">Export comptable mensuel</li>
+                <li data-i18n="plan.cabinet.f5">Support email J+1</li>
               </ul>
-              <a class="btn btn-primary btn-block" href="/app/#tab-seal">Choisir Cabinet</a>
+              <a class="btn btn-primary btn-block" href="/app/#tab-seal" data-i18n="plan.cabinet.cta">
+                Choisir Cabinet
+              </a>
             </article>
             <article class="plan">
               <header>
-                <h3>Étude</h3>
-                <p class="plan-price"><span class="plan-amount">149&nbsp;€</span><span class="plan-period">/&nbsp;mois</span></p>
-                <p class="plan-tagline">Pour une étude, une SCM ou un groupe.</p>
+                <h3 data-i18n="plan.pro.title">Pro</h3>
+                <p class="plan-price">
+                  <span class="plan-amount" data-i18n="pricing.amount.199">199</span>
+                  <span class="plan-currency" aria-hidden="true">€</span>
+                  <span class="plan-period" data-i18n="pricing.period">/ mois</span>
+                </p>
+                <p class="plan-tagline" data-i18n="plan.pro.tagline">
+                  Pour un cabinet de 1 à 3 professionnels.
+                </p>
               </header>
               <ul class="plan-features">
-                <li>Tout du plan Cabinet</li>
-                <li>Jusqu'à 10&nbsp;utilisateurs</li>
-                <li>Ancrage on-chain (Polygon, optionnel)</li>
-                <li>Espace client mandaté</li>
-                <li>SLA 99,9&nbsp;% + support téléphonique</li>
+                <li data-i18n="plan.pro.f1">Scellements illimités</li>
+                <li data-i18n="plan.pro.f2">RGPD vault — coffre-fort 5 ans</li>
+                <li data-i18n="plan.pro.f3">BODACC veille sur vos dossiers</li>
+                <li data-i18n="plan.pro.f4">RBE Express INPI</li>
+                <li data-i18n="plan.pro.f5">LCB-FT scan (200 recherches / mois)</li>
               </ul>
-              <a class="btn btn-ghost btn-block" href="mailto:contact@doc-seal.com?subject=Demande%20plan%20%C3%89tude">Nous contacter</a>
+              <a
+                class="btn btn-primary btn-block"
+                href="mailto:contact@doc-seal.com?subject=Plan%20Pro"
+                data-i18n="plan.pro.cta"
+              >
+                Choisir Pro
+              </a>
+            </article>
+            <article class="plan">
+              <header>
+                <h3 data-i18n="plan.etude.title">Étude</h3>
+                <p class="plan-price">
+                  <span class="plan-amount" data-i18n="pricing.amount.499">499</span>
+                  <span class="plan-currency" aria-hidden="true">€</span>
+                  <span class="plan-period" data-i18n="pricing.period">/ mois</span>
+                </p>
+                <p class="plan-tagline" data-i18n="plan.etude.tagline">
+                  Pour une étude ou un cabinet de 4 à 10 professionnels.
+                </p>
+              </header>
+              <ul class="plan-features">
+                <li data-i18n="plan.etude.f1">Tout du plan Pro</li>
+                <li data-i18n="plan.etude.f2">Jusqu'à 10 utilisateurs</li>
+                <li data-i18n="plan.etude.f3">OAC dashboard</li>
+                <li data-i18n="plan.etude.f4">LCB-FT scan illimité</li>
+                <li data-i18n="plan.etude.f5">Ancrage on-chain (Polygon, optionnel)</li>
+                <li data-i18n="plan.etude.f6">SLA 99,9 % + support téléphonique</li>
+              </ul>
+              <a
+                class="btn btn-ghost btn-block"
+                href="mailto:contact@doc-seal.com?subject=Plan%20%C3%89tude"
+                data-i18n="plan.etude.cta"
+              >
+                Choisir Étude
+              </a>
+            </article>
+            <article class="plan plan-premium">
+              <header>
+                <p class="plan-badge plan-badge-gold" data-i18n="plan.premium.badge">Sur devis</p>
+                <h3 data-i18n="plan.premium.title">Premium</h3>
+                <p class="plan-price">
+                  <span class="plan-amount" data-i18n="pricing.amount.1900">1 900</span>
+                  <span class="plan-currency" aria-hidden="true">€</span>
+                  <span class="plan-period" data-i18n="pricing.period">/ mois</span>
+                </p>
+                <p class="plan-tagline" data-i18n="plan.premium.tagline">
+                  Pour les grandes études et les cabinets internationaux
+                  (Big 4 Legal, AmLaw 100).
+                </p>
+              </header>
+              <ul class="plan-features">
+                <li data-i18n="plan.premium.f1">Tout du plan Étude</li>
+                <li data-i18n="plan.premium.f2">Onboarding sur site (Paris, Londres, Bruxelles)</li>
+                <li data-i18n="plan.premium.f3">Intégration sur-mesure (iManage, NetDocuments, iNot, Genapi)</li>
+                <li data-i18n="plan.premium.f4">Support dédié 24/7 (téléphone, email, Slack)</li>
+                <li data-i18n="plan.premium.f5">Audit LCB-FT semestriel par notre équipe</li>
+                <li data-i18n="plan.premium.f6">Multi-utilisateurs illimités, SSO SAML</li>
+                <li data-i18n="plan.premium.f7">Personnalisation des certificats (logo cabinet)</li>
+              </ul>
+              <a
+                class="btn btn-gold btn-block"
+                href="mailto:contact@doc-seal.com?subject=Plan%20Premium%20%E2%80%94%20demande%20de%20devis"
+                data-i18n="plan.premium.cta"
+              >
+                Demander un devis
+              </a>
             </article>
           </div>
-          <p class="pricing-note">
+          <p class="pricing-note" data-i18n="pricing.note">
             Tarifs indicatifs en phase de lancement. La facturation et les
             règles d'usage seront détaillées dans les CGU avant tout
             engagement.
@@ -302,13 +539,13 @@
       <section class="cta">
         <div class="container cta-row">
           <div>
-            <h2>Prêt à sceller votre premier document&nbsp;?</h2>
-            <p>
+            <h2 data-i18n-html="cta.h2.html">Prêt à sceller votre premier document&nbsp;?</h2>
+            <p data-i18n="cta.body">
               Aucune carte bancaire requise. Le scellement et la vérification
               fonctionnent immédiatement depuis votre navigateur.
             </p>
           </div>
-          <a class="btn btn-primary btn-lg" href="/app/#tab-seal">
+          <a class="btn btn-primary btn-lg" href="/app/#tab-seal" data-i18n="cta.button">
             Démarrer maintenant
           </a>
         </div>
@@ -327,19 +564,20 @@
             </span>
             <span class="brand-text">Doc-Seal</span>
           </a>
-          <p class="footer-baseline">
-            La signature cryptographique pour les pros du droit et de la santé.
+          <p class="footer-baseline" data-i18n="footer.baseline">
+            La signature cryptographique des notaires et avocats français —
+            privacy by design.
           </p>
         </div>
         <nav class="footer-nav" aria-label="Liens secondaires">
-          <a href="/app/">Application</a>
-          <a href="#fonctionnement">Fonctionnement</a>
-          <a href="#tarifs">Tarifs</a>
-          <a href="mailto:contact@doc-seal.com">Contact</a>
+          <a href="/app/" data-i18n="footer.app">Application</a>
+          <a href="#fonctionnement" data-i18n="footer.fonctionnement">Fonctionnement</a>
+          <a href="#tarifs" data-i18n="footer.tarifs">Tarifs</a>
+          <a href="mailto:contact@doc-seal.com" data-i18n="footer.contact">Contact</a>
         </nav>
       </div>
       <div class="container footer-legal">
-        <p>
+        <p data-i18n-html="footer.legal.html">
           © <span id="footer-year">2026</span> Doc-Seal. Le contenu de vos
           fichiers n'est <strong>jamais</strong> transmis au serveur — seul le
           hash SHA-256 l'est. Code source ouvert.
@@ -347,8 +585,7 @@
       </div>
     </footer>
 
-    <script>
-      document.getElementById("footer-year").textContent = new Date().getFullYear();
-    </script>
+    <script src="i18n.js"></script>
+    <script src="roadmap.js"></script>
   </body>
 </html>
