@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Politique de confidentialité — Doc-Seal</title>
+    <meta
+      name="description"
+      content="Politique de confidentialité Doc-Seal — RGPD, données traitées, durées de conservation, droits des personnes."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://doc-seal.com/legal/confidentialite.html" />
+    <link rel="stylesheet" href="legal.css" />
+  </head>
+  <body>
+    <header class="legal-nav">
+      <div class="container">
+        <a class="brand" href="/">
+          <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 2 L28 7 V16 C28 23 22 28 16 30 C10 28 4 23 4 16 V7 Z" fill="#1d4878" stroke="#c9a961" stroke-width="1.5"/>
+            <path d="M11 16 L15 20 L22 12" stroke="#c9a961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          Doc-Seal
+        </a>
+        <a class="back" href="/">← Retour à l'accueil</a>
+      </div>
+    </header>
+
+    <main class="legal-page">
+      <header class="intro">
+        <h1>Politique de confidentialité</h1>
+        <p class="meta">
+          Dernière mise à jour : <time datetime="2026-04-27">27 avril 2026</time> ·
+          Version 1.0
+        </p>
+      </header>
+
+      <div class="notice warn">
+        <strong>Document en cours de finalisation.</strong> Cette politique
+        décrit fidèlement le fonctionnement actuel du service. Les noms et
+        coordonnées du responsable de traitement seront complétés avant la
+        commercialisation. À faire valider par votre conseil juridique avant
+        publication officielle.
+      </div>
+
+      <div class="toc">
+        <strong>Sommaire</strong>
+        <ol>
+          <li><a href="#principe">Principe directeur : confidentialité par construction</a></li>
+          <li><a href="#responsable">Responsable de traitement</a></li>
+          <li><a href="#donnees">Données collectées et finalités</a></li>
+          <li><a href="#bases">Bases légales</a></li>
+          <li><a href="#duree">Durées de conservation</a></li>
+          <li><a href="#destinataires">Destinataires et sous-traitants</a></li>
+          <li><a href="#transferts">Transferts hors UE</a></li>
+          <li><a href="#securite">Mesures de sécurité</a></li>
+          <li><a href="#droits">Vos droits (RGPD)</a></li>
+          <li><a href="#cookies">Cookies et stockage local</a></li>
+          <li><a href="#secret">Secret professionnel et secret médical</a></li>
+          <li><a href="#contact">Contact &amp; réclamation CNIL</a></li>
+        </ol>
+      </div>
+
+      <h2 id="principe">1. Principe directeur — confidentialité par construction</h2>
+      <p>
+        Doc-Seal est conçu autour d'un principe simple&nbsp;:
+        <strong>le contenu de vos documents ne quitte jamais votre appareil</strong>.
+        L'empreinte cryptographique SHA-256 est calculée localement dans votre
+        navigateur via l'API <code>SubtleCrypto</code>&nbsp;; seul ce hash de
+        64&nbsp;caractères est transmis à nos serveurs. Cette propriété est
+        vérifiable dans le code source ouvert du projet.
+      </p>
+      <p>
+        Le seul cas où un fichier transite côté serveur est lorsque vous
+        utilisez explicitement le module optionnel de
+        <em>coffre-fort chiffré</em>&nbsp;: dans ce cas, le fichier est
+        chiffré dans votre navigateur avec une clé dérivée de votre
+        passphrase (jamais transmise) avant tout envoi, et nous ne disposons
+        d'aucun moyen technique de le déchiffrer.
+      </p>
+
+      <h2 id="responsable">2. Responsable de traitement</h2>
+      <p>
+        Le responsable de traitement au sens du RGPD est&nbsp;:
+      </p>
+      <ul>
+        <li><strong>Raison sociale&nbsp;:</strong> <em>[À compléter]</em></li>
+        <li><strong>Adresse&nbsp;:</strong> <em>[À compléter]</em></li>
+        <li><strong>Contact RGPD&nbsp;:</strong> <a href="mailto:contact@doc-seal.com">contact@doc-seal.com</a></li>
+      </ul>
+
+      <h2 id="donnees">3. Données collectées et finalités</h2>
+
+      <h3>3.1 Données de compte</h3>
+      <ul>
+        <li><strong>Adresse e-mail</strong> — identifiant de connexion.</li>
+        <li><strong>Mot de passe</strong> — stocké uniquement sous forme de hash bcrypt (jamais en clair).</li>
+        <li><strong>Rôle déclaré</strong> (professionnel ou client) — finalité fonctionnelle.</li>
+        <li><strong>Sel cryptographique individuel</strong> — utilisé pour la dérivation de clés de chiffrement, n'a aucune valeur sans votre passphrase.</li>
+      </ul>
+
+      <h3>3.2 Données de scellement</h3>
+      <ul>
+        <li><strong>Empreinte SHA-256 du document</strong> (64 caractères hex).</li>
+        <li><strong>Catégorie</strong> déclarée par vous (juridique, médical, autre).</li>
+        <li><strong>Libellé</strong> facultatif que vous saisissez (vous restez libre de ne rien y mettre d'identifiant).</li>
+        <li><strong>Horodatage UTC</strong> du scellement.</li>
+        <li><strong>Index et hash de chaîne</strong> (calculs cryptographiques internes).</li>
+        <li>Le cas échéant&nbsp;: <strong>hash de transaction blockchain</strong> et <strong>numéro de bloc</strong> si l'ancrage on-chain est activé.</li>
+      </ul>
+      <p>
+        <strong>Aucune information sur le contenu du document n'est collectée.</strong>
+        Nous ne pouvons techniquement pas savoir s'il s'agit d'un contrat,
+        d'un dossier patient ou d'une photo&nbsp;; nous voyons uniquement le
+        hash et les métadonnées que vous nous communiquez.
+      </p>
+
+      <h3>3.3 Données de coffre-fort (uniquement si vous l'utilisez)</h3>
+      <ul>
+        <li><strong>Fichier chiffré côté navigateur</strong> (AES-256-GCM, clé dérivée par PBKDF2 de votre passphrase). Nous ne pouvons pas le déchiffrer.</li>
+        <li><strong>Nom de fichier original</strong> tel que saisi par vous (vous pouvez le modifier avant l'envoi).</li>
+        <li><strong>Taille en octets.</strong></li>
+      </ul>
+
+      <h3>3.4 Données techniques de service</h3>
+      <ul>
+        <li>Logs serveur standards (adresse IP, agent utilisateur, horodatage de requête) conservés pour la sécurité et la prévention d'abus.</li>
+      </ul>
+
+      <h2 id="bases">4. Bases légales (article 6 RGPD)</h2>
+      <ul>
+        <li><strong>Exécution du contrat</strong> (art. 6.1.b)&nbsp;: création de compte, scellement, génération du certificat.</li>
+        <li><strong>Intérêt légitime</strong> (art. 6.1.f)&nbsp;: sécurité du service, prévention des abus, journalisation technique.</li>
+        <li><strong>Obligation légale</strong> (art. 6.1.c)&nbsp;: facturation, comptabilité, lutte contre la fraude.</li>
+      </ul>
+
+      <h2 id="duree">5. Durées de conservation</h2>
+      <ul>
+        <li><strong>Données de compte</strong>&nbsp;: pendant toute la durée de votre abonnement, puis supprimées dans un délai de <strong>30&nbsp;jours</strong> à compter de la résiliation.</li>
+        <li><strong>Empreintes scellées et registre append-only</strong>&nbsp;: <strong>conservées de manière permanente</strong>. La nature même du service exige que les empreintes restent vérifiables dans le temps&nbsp;; toutefois, ces données ne contiennent aucune information sur le contenu du document.</li>
+        <li><strong>Fichiers chiffrés du coffre-fort</strong>&nbsp;: conservés pendant la durée de l'abonnement&nbsp;; supprimés sur demande de l'utilisateur ou après résiliation.</li>
+        <li><strong>Logs techniques</strong>&nbsp;: <strong>12&nbsp;mois</strong> maximum.</li>
+        <li><strong>Données de facturation</strong>&nbsp;: <strong>10&nbsp;ans</strong> conformément au Code de commerce.</li>
+      </ul>
+
+      <h2 id="destinataires">6. Destinataires et sous-traitants</h2>
+      <p>Nous faisons appel aux sous-traitants suivants&nbsp;:</p>
+      <ul>
+        <li><strong>Render Services, Inc.</strong> (États-Unis) — hébergement de l'API et du site web.</li>
+        <li>Le cas échéant&nbsp;: opérateur de paiement (Stripe ou équivalent), fournisseur d'envoi d'emails transactionnels — la liste précise sera complétée à mesure que ces services seront activés.</li>
+        <li>Le cas échéant&nbsp;: nœuds RPC blockchain (Polygon / Ethereum) si vous activez l'ancrage on-chain. Dans ce cas, <em>seul le hash</em> est transmis à la blockchain&nbsp;; aucune donnée personnelle nominative.</li>
+      </ul>
+
+      <h2 id="transferts">7. Transferts hors Union Européenne</h2>
+      <p>
+        L'hébergeur Render Services, Inc. est une société états-unienne. Le
+        transfert des données techniques vers les États-Unis est encadré par
+        les <strong>clauses contractuelles types</strong> adoptées par la
+        Commission européenne (décision 2021/914) et par les engagements de
+        sécurité contractuels de Render.
+      </p>
+      <p>
+        <strong>Pour les professionnels de santé&nbsp;:</strong> Doc-Seal n'est
+        pas, à ce jour, certifié <em>Hébergeur de Données de Santé (HDS)</em>.
+        En conséquence, vous ne devez utiliser le service que pour des
+        documents qui <strong>ne contiennent aucune donnée personnelle de
+        santé identifiante</strong>. Le scellement par hash est précisément
+        conçu pour cela&nbsp;: vous gardez le dossier patient localement, et
+        seule l'empreinte cryptographique transite. Une certification HDS est
+        envisagée pour les évolutions futures de l'offre.
+      </p>
+
+      <h2 id="securite">8. Mesures de sécurité</h2>
+      <ul>
+        <li>Calcul des hashes <strong>côté navigateur</strong> via WebCrypto, sans transmission du contenu.</li>
+        <li>Communication chiffrée TLS 1.2+ (HTTPS) pour toutes les requêtes vers <code>api.doc-seal.com</code>.</li>
+        <li>Mots de passe stockés en hash <strong>bcrypt</strong> (12 rounds) après pré-hash SHA-256.</li>
+        <li>Authentification par jetons <strong>JWT</strong> à durée de vie limitée (24&nbsp;h par défaut).</li>
+        <li>Chiffrement <strong>AES-256-GCM</strong> avec clé dérivée par PBKDF2 pour les fichiers du coffre-fort.</li>
+        <li>Hash-chain <em>append-only</em> avec vérification d'intégrité disponible publiquement.</li>
+        <li>Registre on-chain optionnel pour une preuve d'antériorité indépendante de notre infrastructure.</li>
+      </ul>
+
+      <h2 id="droits">9. Vos droits (RGPD)</h2>
+      <p>
+        Conformément au Règlement Général sur la Protection des Données et à
+        la loi <em>Informatique et Libertés</em>, vous disposez des droits
+        suivants sur vos données&nbsp;:
+      </p>
+      <ul>
+        <li>Droit d'<strong>accès</strong> à vos données.</li>
+        <li>Droit de <strong>rectification</strong>.</li>
+        <li>Droit à l'<strong>effacement</strong> (« droit à l'oubli »).</li>
+        <li>Droit à la <strong>limitation</strong> du traitement.</li>
+        <li>Droit à la <strong>portabilité</strong> (export des données dans un format structuré).</li>
+        <li>Droit d'<strong>opposition</strong> aux traitements fondés sur l'intérêt légitime.</li>
+        <li>Droit de <strong>définir des directives</strong> relatives au sort de vos données après votre décès.</li>
+      </ul>
+      <p>
+        Pour exercer ces droits&nbsp;: <a href="mailto:contact@doc-seal.com">contact@doc-seal.com</a>.
+        Nous répondons sous un mois maximum.
+      </p>
+      <p>
+        <strong>Cas particulier des empreintes scellées&nbsp;:</strong>
+        l'effacement d'une empreinte cryptographique du registre
+        compromettrait la valeur probante de toutes les entrées postérieures.
+        Conformément à l'article 17.3 du RGPD, le maintien des empreintes
+        peut être nécessaire à la <em>constatation, l'exercice ou la défense
+        de droits en justice</em>. Cet équilibre sera détaillé au cas par
+        cas. Vos données de compte (e-mail, etc.) restent quant à elles
+        effaçables sans restriction.
+      </p>
+
+      <h2 id="cookies">10. Cookies et stockage local</h2>
+      <p>
+        Doc-Seal n'utilise <strong>aucun cookie tiers</strong> de mesure
+        d'audience ou publicitaire. Les seules données stockées dans votre
+        navigateur sont&nbsp;:
+      </p>
+      <ul>
+        <li>Le <strong>jeton JWT de session</strong> dans le <code>localStorage</code> ou <code>chrome.storage.local</code> de l'extension.</li>
+        <li>L'URL de l'API si vous l'avez modifiée.</li>
+      </ul>
+      <p>
+        Aucun consentement n'est requis car aucun de ces stockages n'est
+        utilisé à des fins de traçage.
+      </p>
+
+      <h2 id="secret">11. Secret professionnel et secret médical</h2>
+      <p>
+        L'architecture <em>zero-knowledge</em> de Doc-Seal est conçue pour
+        être compatible avec les obligations de secret professionnel des
+        avocats (art.&nbsp;66-5 de la loi du 31&nbsp;décembre 1971), des
+        notaires (art.&nbsp;23 du décret du 26&nbsp;novembre 1971), et avec
+        le secret médical (art.&nbsp;L.&nbsp;1110-4 du Code de la santé
+        publique). Le contenu du document n'étant pas transmis, aucune
+        levée de secret n'est sollicitée pour le seul fait du scellement.
+      </p>
+      <p>
+        Vous restez néanmoins responsable du libellé que vous saisissez et
+        des données de compte que vous communiquez. Nous vous recommandons
+        de ne pas inclure d'éléments identifiants dans le champ
+        <em>libellé</em>.
+      </p>
+
+      <h2 id="contact">12. Contact &amp; droit de réclamation</h2>
+      <p>
+        Pour toute question relative au traitement de vos données&nbsp;:
+        <a href="mailto:contact@doc-seal.com">contact@doc-seal.com</a>.
+      </p>
+      <p>
+        Vous disposez du droit d'introduire une réclamation auprès de la
+        CNIL&nbsp;:
+        <a href="https://www.cnil.fr/fr/plaintes" rel="noopener noreferrer" target="_blank">cnil.fr/fr/plaintes</a>.
+      </p>
+    </main>
+
+    <footer class="legal-footer">
+      <div class="container">
+        <p>© 2026 Doc-Seal</p>
+        <nav>
+          <a href="/">Accueil</a>
+          <a href="cgu.html">CGU</a>
+          <a href="mentions.html">Mentions légales</a>
+          <a href="mailto:contact@doc-seal.com">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Conditions Générales d'Utilisation — Doc-Seal</title>
+    <meta
+      name="description"
+      content="Conditions Générales d'Utilisation du service Doc-Seal — usage du service de scellement cryptographique, responsabilités, valeur probante."
+    />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://doc-seal.com/legal/cgu.html" />
+    <link rel="stylesheet" href="legal.css" />
+  </head>
+  <body>
+    <header class="legal-nav">
+      <div class="container">
+        <a class="brand" href="/">
+          <svg viewBox="0 0 32 32" width="22" height="22" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 2 L28 7 V16 C28 23 22 28 16 30 C10 28 4 23 4 16 V7 Z" fill="#1d4878" stroke="#c9a961" stroke-width="1.5"/>
+            <path d="M11 16 L15 20 L22 12" stroke="#c9a961" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+          Doc-Seal
+        </a>
+        <a class="back" href="/">← Retour à l'accueil</a>
+      </div>
+    </header>
+
+    <main class="legal-page">
+      <header class="intro">
+        <h1>Conditions Générales d'Utilisation</h1>
+        <p class="meta">
+          Dernière mise à jour : <time datetime="2026-04-27">27 avril 2026</time> ·
+          Version 1.0
+        </p>
+      </header>
+
+      <div class="notice warn">
+        <strong>Document en cours de finalisation.</strong> Ces CGU décrivent
+        de manière fidèle le service tel qu'il est conçu et le périmètre des
+        engagements pris par l'éditeur. Elles n'engagent contractuellement
+        Doc-Seal que dans leur version définitive, datée et acceptée par
+        l'utilisateur lors de l'inscription. À faire valider par votre
+        conseil juridique avant publication officielle.
+      </div>
+
+      <div class="toc">
+        <strong>Sommaire</strong>
+        <ol>
+          <li><a href="#objet">Objet du service</a></li>
+          <li><a href="#definitions">Définitions</a></li>
+          <li><a href="#acceptation">Acceptation et modification</a></li>
+          <li><a href="#acces">Accès et création de compte</a></li>
+          <li><a href="#usage">Usage du service</a></li>
+          <li><a href="#valeur">Valeur probante du certificat</a></li>
+          <li><a href="#engagements">Engagements de l'utilisateur</a></li>
+          <li><a href="#tarifs">Tarifs et paiement</a></li>
+          <li><a href="#disponibilite">Disponibilité, SLA, maintenance</a></li>
+          <li><a href="#donnees">Données personnelles</a></li>
+          <li><a href="#secret">Secret professionnel</a></li>
+          <li><a href="#responsabilite">Limitation de responsabilité</a></li>
+          <li><a href="#resiliation">Résiliation</a></li>
+          <li><a href="#droit">Droit applicable et juridiction</a></li>
+        </ol>
+      </div>
+
+      <h2 id="objet">1. Objet du service</h2>
+      <p>
+        Doc-Seal est un service en ligne de
+        <strong>scellement cryptographique</strong> de documents numériques,
+        proposé par <em>[Raison sociale à compléter]</em>, ci-après
+        « <strong>l'Éditeur</strong> ». Le service permet à l'Utilisateur
+        d'inscrire l'empreinte cryptographique SHA-256 d'un document dans un
+        registre <em>append-only</em> tenu par l'Éditeur, et optionnellement
+        sur un registre blockchain public, afin d'établir une
+        <strong>preuve d'antériorité et d'intégrité</strong> sans divulguer le
+        contenu du document.
+      </p>
+
+      <h2 id="definitions">2. Définitions</h2>
+      <ul>
+        <li><strong>Service</strong>&nbsp;: l'ensemble fonctionnel comprenant le site <code>doc-seal.com</code>, l'API <code>api.doc-seal.com</code>, l'extension navigateur Doc-Seal et tout outil associé.</li>
+        <li><strong>Utilisateur</strong>&nbsp;: toute personne physique ou morale ayant créé un compte sur le Service.</li>
+        <li><strong>Document</strong>&nbsp;: tout fichier numérique soumis au scellement par l'Utilisateur.</li>
+        <li><strong>Empreinte</strong>&nbsp;: hash cryptographique SHA-256 d'un Document, calculé localement par l'Utilisateur.</li>
+        <li><strong>Scellement</strong>&nbsp;: l'inscription de l'Empreinte dans le registre Doc-Seal et son horodatage.</li>
+        <li><strong>Certificat</strong>&nbsp;: document PDF généré par le Service attestant d'un Scellement.</li>
+        <li><strong>Hash-chain</strong>&nbsp;: registre append-only tenu par l'Éditeur dans lequel chaque Scellement référence le précédent.</li>
+        <li><strong>Ancrage on-chain</strong>&nbsp;: option permettant en sus l'écriture de l'Empreinte sur une blockchain publique.</li>
+      </ul>
+
+      <h2 id="acceptation">3. Acceptation et modification</h2>
+      <p>
+        L'utilisation du Service implique l'acceptation pleine et entière des
+        présentes CGU. L'Éditeur peut faire évoluer les CGU&nbsp;; toute
+        modification substantielle sera notifiée à l'Utilisateur par email
+        avec un préavis raisonnable, et la poursuite de l'usage du Service
+        après cette notification vaut acceptation.
+      </p>
+
+      <h2 id="acces">4. Accès et création de compte</h2>
+      <p>
+        Le Service est accessible 24/7 sous réserve des opérations de
+        maintenance. La vérification d'un Document scellé est gratuite et
+        ouverte à tout tiers, sans création de compte. Le scellement
+        nécessite la création d'un compte avec une adresse e-mail valide et
+        un mot de passe d'au moins 8&nbsp;caractères.
+      </p>
+      <p>
+        L'Utilisateur s'engage à fournir des informations exactes et à
+        maintenir la confidentialité de ses identifiants. Toute action
+        effectuée depuis son compte est réputée effectuée par lui.
+      </p>
+
+      <h2 id="usage">5. Usage du service</h2>
+      <p>
+        L'Utilisateur peut sceller des Documents dans le cadre de ses
+        activités professionnelles ou personnelles, dans la limite du plan
+        d'abonnement souscrit. Le contenu des Documents n'est jamais transmis
+        à l'Éditeur (cf.
+        <a href="confidentialite.html">politique de confidentialité</a>),
+        ce qui transfère à l'Utilisateur la responsabilité du choix des
+        documents qu'il scelle.
+      </p>
+
+      <h3>5.1 Usages interdits</h3>
+      <p>L'Utilisateur s'interdit notamment&nbsp;:</p>
+      <ul>
+        <li>De sceller des Documents dont il n'a pas la titularité ou l'autorisation de les inscrire.</li>
+        <li>D'utiliser le Service à des fins frauduleuses ou pour soutenir une activité illégale.</li>
+        <li>De tenter de compromettre l'intégrité du registre, de l'API ou du site.</li>
+        <li>De faire un usage automatisé excessif (scraping, requêtes en cascade) susceptible de dégrader la qualité du service pour les autres Utilisateurs.</li>
+      </ul>
+
+      <h2 id="valeur">6. Valeur probante du certificat</h2>
+      <p>
+        Le Certificat émis par Doc-Seal atteste qu'à la date indiquée, une
+        Empreinte donnée a été inscrite dans le registre tenu par l'Éditeur.
+        Il établit cryptographiquement&nbsp;:
+      </p>
+      <ul>
+        <li>L'<strong>antériorité</strong> de la connaissance du Document à la date du Scellement&nbsp;;</li>
+        <li>L'<strong>intégrité</strong> du Document&nbsp;: toute modification d'un seul octet rend le Certificat invalide.</li>
+      </ul>
+      <p>
+        Le Certificat <strong>ne préjuge pas</strong> de la qualité juridique
+        du Document scellé (validité d'un contrat, opposabilité d'une signature,
+        force probante d'un acte). Il n'a pas la valeur d'un acte authentique
+        ni d'une signature électronique qualifiée au sens du règlement
+        eIDAS&nbsp;925/2014. Il fournit en revanche un élément de preuve
+        recevable au titre de l'article&nbsp;1366 du Code civil français
+        (preuve par tout moyen).
+      </p>
+      <p>
+        Lorsque l'<em>ancrage on-chain</em> est activé, le Scellement bénéficie
+        en outre d'une copie sur un registre public distribué dont l'horodatage
+        et l'inaltérabilité reposent sur le consensus du réseau blockchain
+        utilisé.
+      </p>
+
+      <h2 id="engagements">7. Engagements de l'utilisateur</h2>
+      <p>L'Utilisateur s'engage en particulier à&nbsp;:</p>
+      <ul>
+        <li>Conserver lui-même une copie sécurisée du Document scellé&nbsp;: le Service ne stocke pas le contenu&nbsp;; en cas de perte du Document, le Certificat seul ne permet pas de reconstituer le fichier.</li>
+        <li>Respecter les obligations de secret professionnel et de protection des données personnelles applicables à son activité (avocat, notaire, médecin, etc.).</li>
+        <li>Ne pas confondre Doc-Seal avec un service de signature électronique qualifiée. Les deux outils sont complémentaires, non substituables.</li>
+      </ul>
+
+      <h2 id="tarifs">8. Tarifs et paiement</h2>
+      <p>
+        Les tarifs en vigueur sont indiqués sur la page
+        <a href="/#tarifs">Tarifs</a>. Ils peuvent être modifiés moyennant un
+        préavis d'un mois pour les abonnements en cours. Le paiement est
+        traité par un prestataire externe sécurisé (PSP). Aucune donnée de
+        carte bancaire n'est stockée par l'Éditeur.
+      </p>
+      <p>
+        Une période d'essai gratuite peut être proposée. Les tarifs
+        professionnels s'entendent hors taxes. La résiliation prend effet à
+        la fin de la période en cours, sans remboursement prorata sauf
+        dispositions contraires.
+      </p>
+
+      <h2 id="disponibilite">9. Disponibilité, SLA, maintenance</h2>
+      <p>
+        L'Éditeur met en œuvre les moyens techniques et organisationnels
+        raisonnables pour assurer la disponibilité du Service. Les plans
+        professionnels affichant un engagement de disponibilité (SLA) sont
+        régis par les conditions du plan correspondant.
+      </p>
+      <p>
+        Les opérations de maintenance planifiées sont annoncées par email
+        avec un préavis raisonnable. Les opérations de maintenance d'urgence
+        (sécurité, intégrité du registre) peuvent être effectuées sans
+        préavis.
+      </p>
+
+      <h2 id="donnees">10. Données personnelles</h2>
+      <p>
+        Le traitement des données personnelles est décrit dans la
+        <a href="confidentialite.html">politique de confidentialité</a>, qui
+        fait partie intégrante des présentes CGU. L'Utilisateur reconnaît en
+        avoir pris connaissance.
+      </p>
+
+      <h2 id="secret">11. Secret professionnel</h2>
+      <p>
+        L'architecture du Service (calcul du hash côté navigateur, absence
+        de transmission du contenu) est conçue pour permettre l'usage par
+        des professionnels soumis au secret. Toutefois, l'Utilisateur reste
+        seul responsable&nbsp;:
+      </p>
+      <ul>
+        <li>Du contenu qu'il choisit d'inscrire dans le champ <em>libellé</em> (texte libre) — il lui est recommandé de ne pas y inclure d'éléments identifiants.</li>
+        <li>Du choix des Documents qu'il scelle, notamment au regard de ses obligations professionnelles.</li>
+      </ul>
+
+      <h2 id="responsabilite">12. Limitation de responsabilité</h2>
+      <p>
+        L'Éditeur ne pourra être tenu pour responsable des dommages
+        indirects, immatériels ou consécutifs liés à l'usage du Service,
+        notamment perte d'opportunité, perte de chance, atteinte à l'image,
+        dans les limites permises par la loi.
+      </p>
+      <p>
+        Le service est fourni avec les précautions techniques décrites dans
+        la documentation publique. L'Éditeur ne garantit pas que le Service
+        sera exempt de tout dysfonctionnement ou interruption.
+      </p>
+      <p>
+        En tout état de cause, et sauf faute lourde ou intentionnelle, la
+        responsabilité totale de l'Éditeur est plafonnée au montant des
+        sommes effectivement versées par l'Utilisateur au cours des
+        douze&nbsp;(12) derniers mois.
+      </p>
+
+      <h2 id="resiliation">13. Résiliation</h2>
+      <p>
+        L'Utilisateur peut résilier son compte à tout moment depuis l'espace
+        de gestion. La résiliation entraîne la suppression des données de
+        compte dans les conditions précisées dans la
+        <a href="confidentialite.html">politique de confidentialité</a>. Les
+        Empreintes scellées sont conservées dans le registre pour préserver
+        l'intégrité de la chaîne de preuves.
+      </p>
+      <p>
+        L'Éditeur peut suspendre ou résilier un compte en cas de violation
+        manifeste des présentes CGU, après mise en demeure restée sans effet
+        sauf urgence.
+      </p>
+
+      <h2 id="droit">14. Droit applicable et juridiction</h2>
+      <p>
+        Les présentes CGU sont soumises au droit français. Tout litige
+        relatif à leur formation, leur exécution ou leur interprétation
+        relève des tribunaux français compétents, sous réserve des règles
+        impératives applicables aux consommateurs.
+      </p>
+    </main>
+
+    <footer class="legal-footer">
+      <div class="container">
+        <p>© 2026 Doc-Seal</p>
+        <nav>
+          <a href="/">Accueil</a>
+          <a href="confidentialite.html">Confidentialité</a>
+          <a href="mentions.html">Mentions légales</a>
+          <a href="mailto:contact@doc-seal.com">Contact</a>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
