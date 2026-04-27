@@ -23,9 +23,17 @@ from app.main import app  # noqa: E402
 
 @pytest.fixture(autouse=True)
 def _fresh_db() -> Iterator[None]:
-    """Recrée la base à chaque test pour garantir l'isolation."""
+    """Recrée la base à chaque test pour garantir l'isolation.
+
+    On utilise le même normaliseur d'URL que ``app.database`` pour pouvoir
+    pointer indifféremment vers SQLite (par défaut) ou PostgreSQL (CI / prod).
+    """
+    url = database._normalize_url(os.environ["DATABASE_URL"])
+    is_sqlite = url.startswith("sqlite")
     database.engine = create_engine(
-        os.environ["DATABASE_URL"], connect_args={"check_same_thread": False}
+        url,
+        connect_args={"check_same_thread": False} if is_sqlite else {},
+        pool_pre_ping=not is_sqlite,
     )
     SQLModel.metadata.drop_all(database.engine)
     SQLModel.metadata.create_all(database.engine)
