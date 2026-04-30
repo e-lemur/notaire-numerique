@@ -2,12 +2,23 @@
 
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import UTC, datetime
 from enum import StrEnum
 
 from pydantic import BaseModel, EmailStr, Field
 from sqlmodel import Field as SQLField
 from sqlmodel import SQLModel
+
+
+def _utcnow_naive() -> datetime:
+    """UTC naïf — équivalent moderne de ``datetime.utcnow()`` (deprecated 3.12+).
+
+    On garde la forme naïve pour préserver le format ``isoformat()`` sans
+    suffixe ``+00:00`` : c'est crucial pour la stabilité du calcul du
+    ``chain_hash`` (cf. ``registry.compute_chain_hash``) sur les entrées
+    déjà persistées.
+    """
+    return datetime.now(UTC).replace(tzinfo=None)
 
 
 class Role(StrEnum):
@@ -42,7 +53,7 @@ class User(SQLModel, table=True):
     role: Role = SQLField(default=Role.professional)
     # Sel individuel pour dériver la clé AES de cet utilisateur.
     encryption_salt: str
-    created_at: datetime = SQLField(default_factory=datetime.utcnow)
+    created_at: datetime = SQLField(default_factory=_utcnow_naive)
 
 
 class Seal(SQLModel, table=True):
@@ -57,7 +68,7 @@ class Seal(SQLModel, table=True):
     document_type: DocumentType = SQLField(default=DocumentType.other)
     owner_id: int = SQLField(foreign_key="user.id", index=True)
     label: str | None = None
-    sealed_at: datetime = SQLField(default_factory=datetime.utcnow, index=True)
+    sealed_at: datetime = SQLField(default_factory=_utcnow_naive, index=True)
     # Chaîne de hachage interne
     previous_chain_hash: str
     chain_hash: str = SQLField(index=True)
@@ -76,7 +87,7 @@ class StoredFile(SQLModel, table=True):
     storage_path: str  # chemin relatif dans settings.storage_dir
     document_hash: str = SQLField(index=True)  # hash du contenu clair
     size_bytes: int
-    uploaded_at: datetime = SQLField(default_factory=datetime.utcnow)
+    uploaded_at: datetime = SQLField(default_factory=_utcnow_naive)
 
 
 # ---------- Schémas API ----------
