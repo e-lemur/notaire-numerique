@@ -29,6 +29,21 @@ services:
         fromDatabase:
           name: doc-seal-db
           property: connectionString
+      # ---- Ancrage on-chain (Polygon Amoy testnet par défaut) ----
+      # Ces variables sont laissées vides ici (sync: false) — à renseigner
+      # depuis le dashboard Render avant l'activation. Tant qu'au moins une
+      # des trois manque, l'app fonctionne avec la hash-chain interne uniquement.
+      # Procédure complète : docs/onchain-deployment.md
+      - key: WEB3_RPC_URL
+        sync: false
+      - key: NOTARY_CONTRACT_ADDRESS
+        sync: false
+      - key: WEB3_PRIVATE_KEY
+        sync: false
+      # URL d'explorateur pour linker la transaction depuis le QR du certificat.
+      # Ex Polygon Amoy : https://amoy.polygonscan.com/tx/{tx}
+      - key: ONCHAIN_EXPLORER_TX_URL
+        sync: false
 
   # ---- Frontend statique (landing + app) ----
   - type: web
