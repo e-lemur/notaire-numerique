@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import AsyncIterator
+from contextlib import asynccontextmanager
 from datetime import timedelta
 from typing import Annotated
 
@@ -40,6 +42,13 @@ from .registry import append_seal, verify_chain_integrity
 
 SessionDep = Annotated[Session, Depends(get_session)]
 
+
+@asynccontextmanager
+async def lifespan(_app: FastAPI) -> AsyncIterator[None]:
+    init_db()
+    yield
+
+
 app = FastAPI(
     title="Doc-Seal",
     description=(
@@ -48,6 +57,7 @@ app = FastAPI(
         "des documents n'est jamais divulgué."
     ),
     version=__version__,
+    lifespan=lifespan,
 )
 
 _cors_regex = settings.cors_origin_regex or r"(chrome-extension://.*|https?://.*)"
@@ -59,11 +69,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.on_event("startup")
-def _startup() -> None:
-    init_db()
 
 
 # -------- Métadonnées --------

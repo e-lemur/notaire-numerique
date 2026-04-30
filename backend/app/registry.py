@@ -13,7 +13,7 @@ from datetime import datetime
 
 from sqlmodel import Session, select
 
-from .models import DocumentType, Seal
+from .models import DocumentType, Seal, _utcnow_naive
 
 GENESIS_HASH = "0" * 64  # chain_hash initial avant toute entrée
 
@@ -56,7 +56,7 @@ def append_seal(
     last = get_last_seal(session)
     previous_chain_hash = last.chain_hash if last else GENESIS_HASH
     chain_index = (last.chain_index + 1) if last else 0
-    sealed_at = datetime.utcnow()
+    sealed_at = _utcnow_naive()
     chain_hash = compute_chain_hash(
         previous_chain_hash=previous_chain_hash,
         document_hash=document_hash,

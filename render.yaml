@@ -5,7 +5,7 @@ services:
     runtime: python
     plan: free
     rootDir: backend
-    buildCommand: pip install .
+    buildCommand: pip install '.[onchain]'
     startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
     healthCheckPath: /health
     autoDeploy: true
@@ -22,6 +22,13 @@ services:
         value: https://doc-seal.com/app/?hash={hash}
       - key: CORS_ORIGIN_REGEX
         value: (chrome-extension://.*|https?://.*)
+      # Branche le backend sur la base PostgreSQL managée définie ci-dessous.
+      # Sans cette variable, l'app retombe sur SQLite (filesystem éphémère
+      # sur Render free) et perd les scellements à chaque redéploiement.
+      - key: DATABASE_URL
+        fromDatabase:
+          name: doc-seal-db
+          property: connectionString
       # ---- Ancrage on-chain (Polygon Amoy testnet par défaut) ----
       # Ces variables sont laissées vides ici (sync: false) — à renseigner
       # depuis le dashboard Render avant l'activation. Tant qu'au moins une
@@ -63,3 +70,12 @@ services:
       - path: /*
         name: Referrer-Policy
         value: strict-origin-when-cross-origin
+
+databases:
+  # Base PostgreSQL managée pour la persistance des scellements et des comptes.
+  # Plan free chez Render = 1 GB, expire après 90 jours puis bascule en payant
+  # ($7/mois). À surveiller dans le dashboard Render avant l'échéance.
+  - name: doc-seal-db
+    plan: free
+    databaseName: doc_seal
+    user: doc_seal
